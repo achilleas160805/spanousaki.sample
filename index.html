@@ -400,6 +400,15 @@
             z-index: 0;
             filter: blur(3px) brightness(0.7);
             transform: scale(1.05);
+            /* ΝΕΟ: Smooth Zoom In-Out Animation */
+            animation: heroZoom 25s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+
+        /* ΝΕΟ: Keyframes για το απαλό zoom */
+        @keyframes heroZoom {
+            0% { transform: scale(1.05); }
+            100% { transform: scale(1.12); }
         }
 
         .hero-overlay {
@@ -440,8 +449,7 @@
         /* --------------------------------------------------------- */
 
         .hero-title {
-            /* ΜΕΙΩΣΗ ΜΕΓΕΘΟΥΣ: Από 7vw σε 5.5vw και από 5.4rem σε 4.2rem */
-            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem); /* Μειωμένο για καλύτερη ισορροπία */
             font-weight: 400;
             color: var(--color-ivory);
             line-height: 1.05;
@@ -1054,6 +1062,7 @@
             .mobile-drawer { transition: none !important; }
             .practice-row:hover, .map-canvas:hover { transform: none !important; }
             .hero-fade { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .hero-bg-img { animation: none !important; transform: scale(1.05) !important; }
         }
     </style>
 </head>
