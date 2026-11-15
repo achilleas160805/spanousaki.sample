@@ -376,7 +376,7 @@
         .mobile-backdrop.is-open { opacity: 1; visibility: visible; }
 
         /* ============================================================
-           HERO SECTION
+           HERO SECTION (GPU OPTIMIZED)
            ============================================================ */
         .hero-section {
             position: relative;
@@ -388,6 +388,8 @@
             overflow: hidden;
             background-color: var(--color-brown-dark);
             border-bottom: 1px solid var(--color-beige-border);
+            /* Force layer creation για να μην ξανασχεδιάζει το γύρω περιβάλλον */
+            transform: translateZ(0); 
         }
 
         .hero-bg-img {
@@ -398,28 +400,33 @@
             object-fit: cover;
             object-position: center;
             z-index: 0;
-            /* ΑΦΑΙΡΕΘΗΚΕ ΤΟ BLUR: Επιβαρύνει πολύ τον browser (repaints) */
-            filter: brightness(0.85); 
-            transform: scale(1.05);
-            /* ΝΕΟ: Ακόμα πιο γρήγορο zoom (8s) */
+            /* Χωρίς φίλτρα, μόνο φωτεινότητα μέσω overlay */
+            transform: scale(1.08);
+            /* ΝΕΟ: Πιο γρήγορο zoom (8s) */
             animation: heroZoom 8s ease-in-out infinite alternate;
+            
+            /* ΚΡΙΣΙΜΕΣ ΒΕΛΤΙΩΣΕΙΣ ΓΙΑ ΝΑ ΜΗΝ ΚΟΛΛΑΕΙ: */
             will-change: transform;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            contain: paint;
+            transform-origin: center center;
         }
 
-        /* ΝΕΟ: Keyframes για το zoom */
         @keyframes heroZoom {
-            0% { transform: scale(1.05); }
-            100% { transform: scale(1.12); }
+            0% { transform: scale(1.08); }
+            100% { transform: scale(1.15); }
         }
 
-        /* ΝΕΟ: Το overlay δίνει την "θολούρα" και τη σκίαση χωρίς φίλτρα */
         .hero-overlay {
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at center, rgba(42, 29, 23, 0.3) 0%, rgba(42, 29, 23, 0.85) 100%),
+                radial-gradient(circle at center, rgba(42, 29, 23, 0.35) 0%, rgba(42, 29, 23, 0.85) 100%),
                 linear-gradient(90deg, rgba(42, 29, 23, 0.9) 0%, rgba(42, 29, 23, 0.5) 50%, rgba(42, 29, 23, 0.8) 100%);
             z-index: 1;
+            /* Η ίδια λογική για το overlay */
+            transform: translateZ(0); 
         }
 
         .hero-content {
@@ -1064,7 +1071,7 @@
             .mobile-drawer { transition: none !important; }
             .practice-row:hover, .map-canvas:hover { transform: none !important; }
             .hero-fade { opacity: 1 !important; transform: none !important; transition: none !important; }
-            .hero-bg-img { animation: none !important; transform: scale(1.05) !important; }
+            .hero-bg-img { animation: none !important; transform: scale(1.08) !important; }
         }
     </style>
 </head>
