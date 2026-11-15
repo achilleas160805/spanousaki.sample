@@ -10,7 +10,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -32,7 +32,7 @@
 
         html {
             scroll-behavior: smooth;
-            font-family: 'Zen Maru Gothic', sans-serif;
+            font-family: 'Didact Gothic', sans-serif;
             font-size: 16px;
             background-color: var(--color-white);
             color: var(--color-brown-dark);
@@ -42,7 +42,7 @@
         }
 
         body {
-            font-family: 'Zen Maru Gothic', sans-serif;
+            font-family: 'Didact Gothic', sans-serif;
             background-color: var(--color-white);
             color: var(--color-brown-dark);
             line-height: 1.75;
@@ -158,14 +158,14 @@
             width: 0;
             height: 1px;
             background-color: var(--color-brown);
-            transition: width 0.8s var(--ease-luxury);
+            transition: width 1s var(--ease-luxury);
         }
 
         .is-visible .section-kicker::before { width: 32px; }
 
         .section-title {
             font-size: clamp(2rem, 3.6vw, 2.9rem);
-            font-weight: 500; /* Zen Maru Gothic φαίνεται καλύτερα με 500 εδώ */
+            font-weight: 400;
             color: var(--color-brown-dark);
             line-height: 1.18;
             letter-spacing: -0.012em;
@@ -173,7 +173,7 @@
         }
 
         /* ============================================================
-           HEADER
+           HEADER & NAVIGATION
            ============================================================ */
         .site-header {
             position: fixed;
@@ -183,12 +183,13 @@
             z-index: 1000;
             background-color: rgba(255, 255, 255, 0.98);
             border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease, background-color 0.3s ease;
+            transition: border-color 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         .site-header.is-scrolled {
             border-bottom-color: var(--color-beige-border);
             background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 4px 30px rgba(42, 29, 23, 0.05);
         }
 
         .header-inner {
@@ -203,27 +204,27 @@
             display: inline-flex;
             align-items: center;
             gap: 14px;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.4s var(--ease-luxury);
             flex-shrink: 1;
             min-width: 0;
         }
 
-        .brand-link:hover { opacity: 0.75; }
+        .brand-link:hover { opacity: 0.8; transform: translateY(-1px); }
 
         .brand-logo-svg {
             width: 42px;
             height: 42px;
             flex-shrink: 0;
-            transition: transform 0.4s var(--ease-luxury);
+            transition: transform 0.6s var(--ease-luxury);
         }
 
-        .brand-link:hover .brand-logo-svg { transform: rotate(-3deg) scale(1.03); }
+        .brand-link:hover .brand-logo-svg { transform: rotate(-8deg) scale(1.08); }
 
         .brand-text { display: flex; flex-direction: column; min-width: 0; }
 
         .brand-name {
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 400;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--color-brown-dark);
@@ -273,7 +274,7 @@
             background-color: var(--color-brown-dark);
             transform: scaleX(0);
             transform-origin: right center;
-            transition: transform 0.4s var(--ease-luxury);
+            transition: transform 0.5s var(--ease-luxury);
         }
 
         .nav-item:hover { color: var(--color-brown-dark); }
@@ -287,13 +288,13 @@
             width: 44px; height: 44px;
             color: var(--color-brown-dark);
             border: 1px solid var(--color-beige-border);
-            transition: border-color 0.3s ease, background-color 0.3s ease;
+            transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
             flex-shrink: 0;
             position: relative;
             z-index: 1002;
         }
 
-        .burger-btn:hover { border-color: var(--color-brown-dark); background-color: var(--color-ivory); }
+        .burger-btn:hover { border-color: var(--color-brown-dark); background-color: var(--color-ivory); transform: scale(1.05); }
         .burger-btn:focus-visible { outline: 1px solid var(--color-brown); outline-offset: 2px; }
 
         @media (min-width: 860px) { .burger-btn { display: none; } }
@@ -311,12 +312,12 @@
             border-bottom: 1px solid var(--color-beige-border);
             z-index: 999;
             padding: 20px 24px 32px;
-            box-shadow: 0 12px 30px rgba(42, 29, 23, 0.06);
+            box-shadow: 0 20px 40px rgba(42, 29, 23, 0.08);
             
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-12px);
-            transition: opacity 0.3s ease, transform 0.3s var(--ease-luxury), visibility 0.3s ease;
+            transform: translateY(-20px);
+            transition: opacity 0.4s var(--ease-luxury), transform 0.4s var(--ease-luxury), visibility 0.4s;
         }
 
         .mobile-drawer.is-open {
@@ -335,11 +336,11 @@
             text-transform: uppercase;
             color: var(--color-brown-dark);
             border-bottom: 1px solid var(--color-beige-border);
-            transition: padding-left 0.3s var(--ease-luxury), color 0.3s ease;
+            transition: padding-left 0.4s var(--ease-luxury), color 0.3s ease;
         }
 
         .mobile-nav-list a:hover,
-        .mobile-nav-list a:focus { padding-left: 8px; color: var(--color-brown); }
+        .mobile-nav-list a:focus { padding-left: 12px; color: var(--color-brown); }
 
         .mobile-nav-phones { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
 
@@ -353,10 +354,10 @@
             padding: 14px 20px;
             border: 1px solid var(--color-beige-border);
             background-color: var(--color-ivory);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
         }
 
-        .mobile-nav-phones a:hover { background-color: var(--color-beige-bg); border-color: var(--color-brown); }
+        .mobile-nav-phones a:hover { background-color: var(--color-beige-bg); border-color: var(--color-brown); transform: translateY(-2px); }
 
         /* Backdrop */
         .mobile-backdrop {
@@ -364,18 +365,18 @@
             inset: 0;
             top: var(--header-height);
             background-color: rgba(42, 29, 23, 0.4);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
             z-index: 998;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         .mobile-backdrop.is-open { opacity: 1; visibility: visible; }
 
         /* ============================================================
-           HERO — FULLSCREEN με φωτογραφία
+           HERO SECTION
            ============================================================ */
         .hero-section {
             position: relative;
@@ -419,7 +420,7 @@
 
         .hero-title {
             font-size: clamp(2.8rem, 7vw, 5.4rem);
-            font-weight: 500; /* 500 για καλύτερη απόδοση της Zen Maru Gothic */
+            font-weight: 400;
             color: var(--color-ivory);
             line-height: 1.05;
             letter-spacing: -0.01em;
@@ -446,11 +447,12 @@
             margin-bottom: 48px;
             padding-bottom: 4px;
             border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease, color 0.3s ease;
+            transition: border-color 0.4s ease, color 0.3s ease, transform 0.4s var(--ease-luxury);
         }
 
-        .hero-address svg { stroke: rgba(250, 248, 245, 0.85); }
-        .hero-address:hover { border-bottom-color: var(--color-beige-accent); color: var(--color-ivory); }
+        .hero-address svg { stroke: rgba(250, 248, 245, 0.85); transition: transform 0.4s ease; }
+        .hero-address:hover { border-bottom-color: var(--color-beige-accent); color: var(--color-ivory); transform: translateX(4px); }
+        .hero-address:hover svg { transform: scale(1.1); }
 
         .hero-actions { display: flex; flex-wrap: wrap; gap: 40px; }
 
@@ -463,7 +465,7 @@
             letter-spacing: 0.04em;
             color: var(--color-ivory);
             padding-bottom: 6px;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.4s var(--ease-luxury);
         }
 
         .editorial-link::after {
@@ -472,10 +474,12 @@
             left: 0; bottom: 0;
             width: 100%; height: 1px;
             background-color: rgba(199, 185, 165, 0.6);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.4s var(--ease-luxury);
+            transform-origin: left center;
         }
 
-        .editorial-link:hover::after { background-color: var(--color-ivory); }
+        .editorial-link:hover { transform: translateY(-2px); }
+        .editorial-link:hover::after { background-color: var(--color-ivory); transform: scaleX(1.02); }
 
         .editorial-link-label {
             font-size: 0.68rem;
@@ -513,7 +517,7 @@
 
         @keyframes hintBounce {
             0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
-            50% { transform: translateX(-50%) translateY(6px); opacity: 1; }
+            50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
         }
 
         /* ============================================================
@@ -551,24 +555,24 @@
             gap: 20px;
             padding: 26px 0;
             border-bottom: 1px solid var(--color-beige-border);
-            transition: padding-left 0.4s var(--ease-luxury);
+            transition: padding-left 0.5s var(--ease-luxury), background-color 0.3s ease;
         }
 
-        .pillar-row:hover { padding-left: 8px; }
+        .pillar-row:hover { padding-left: 12px; background-color: rgba(255, 255, 255, 0.4); }
 
         .pillar-icon {
             width: 26px; height: 26px;
             flex-shrink: 0;
             margin-top: 4px;
             opacity: 0.7;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease, transform 0.5s var(--ease-luxury);
         }
 
-        .pillar-row:hover .pillar-icon { opacity: 1; }
+        .pillar-row:hover .pillar-icon { opacity: 1; transform: scale(1.15) rotate(4deg); }
 
         .pillar-title {
             font-size: 1.08rem;
-            font-weight: 700;
+            font-weight: 400;
             color: var(--color-brown-dark);
             margin-bottom: 6px;
         }
@@ -615,7 +619,7 @@
             background-color: var(--color-brown);
             transform: scaleX(0);
             transform-origin: left center;
-            transition: transform 0.9s var(--ease-luxury);
+            transition: transform 1.1s var(--ease-luxury);
         }
 
         .bio-grid.is-visible .portrait-minimal::after { transform: scaleX(1); }
@@ -675,14 +679,15 @@
             align-items: start;
             padding: 38px 0;
             border-bottom: 1px solid var(--color-beige-border);
-            transition: background-color 0.4s ease, padding-left 0.4s var(--ease-luxury);
+            transition: background-color 0.4s ease, padding-left 0.5s var(--ease-luxury), transform 0.4s var(--ease-luxury);
             cursor: pointer;
             position: relative;
         }
 
         .practice-row:hover {
-            background-color: rgba(246, 242, 236, 0.5);
-            padding-left: 12px;
+            background-color: rgba(246, 242, 236, 0.6);
+            padding-left: 16px;
+            transform: scale(1.005);
         }
 
         .practice-row::after {
@@ -691,17 +696,17 @@
             right: 0;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 400;
             color: var(--color-beige-accent);
             opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s var(--ease-luxury);
+            transition: opacity 0.4s ease, transform 0.5s var(--ease-luxury);
             pointer-events: none;
         }
 
         .practice-row:hover::after {
             opacity: 1;
-            transform: translateY(-50%) rotate(90deg);
+            transform: translateY(-50%) rotate(90deg) scale(1.1);
         }
 
         .practice-row:focus-visible { outline: 1px solid var(--color-brown); outline-offset: 6px; }
@@ -720,17 +725,20 @@
             width: 32px; height: 32px;
             opacity: 0.7;
             margin-top: 4px;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease, transform 0.5s var(--ease-luxury);
         }
 
-        .practice-row:hover .practice-card-icon { opacity: 1; }
+        .practice-row:hover .practice-card-icon { opacity: 1; transform: scale(1.15); }
 
         .practice-card-title {
             font-size: 1.28rem;
-            font-weight: 500;
+            font-weight: 400;
             color: var(--color-brown-dark);
             line-height: 1.32;
+            transition: color 0.3s ease;
         }
+
+        .practice-row:hover .practice-card-title { color: var(--color-brown); }
 
         .practice-card-desc {
             font-size: 0.96rem;
@@ -776,7 +784,7 @@
             color: var(--color-brown-dark);
             letter-spacing: 0.02em;
             position: relative;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.4s var(--ease-luxury);
         }
 
         .contact-phone-link::after {
@@ -787,9 +795,10 @@
             background-color: var(--color-beige-accent);
             transform: scaleX(0);
             transform-origin: left center;
-            transition: transform 0.4s var(--ease-luxury);
+            transition: transform 0.5s var(--ease-luxury);
         }
 
+        .contact-phone-link:hover { transform: translateY(-2px); }
         .contact-phone-link:hover::after { transform: scaleX(1); }
 
         .contact-value { font-size: 1.08rem; color: var(--color-brown-dark); line-height: 1.7; }
@@ -812,7 +821,10 @@
             border-top: 1px solid var(--color-beige-border);
             border-bottom: 1px solid var(--color-beige-border);
             padding: 4px 0;
+            transition: transform 0.6s var(--ease-luxury);
         }
+
+        .map-canvas:hover { transform: scale(1.01); }
 
         .map-external-link {
             display: inline-flex;
@@ -825,10 +837,10 @@
             padding-bottom: 6px;
             border-bottom: 1px solid var(--color-beige-accent);
             width: fit-content;
-            transition: border-color 0.3s ease, gap 0.3s ease;
+            transition: border-color 0.3s ease, gap 0.4s var(--ease-luxury);
         }
 
-        .map-external-link:hover { border-bottom-color: var(--color-brown-dark); gap: 14px; }
+        .map-external-link:hover { border-bottom-color: var(--color-brown-dark); gap: 16px; }
 
         /* ============================================================
            FOOTER
@@ -878,20 +890,21 @@
             color: var(--color-brown);
             padding-bottom: 3px;
             border-bottom: 1px solid var(--color-beige-accent);
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, transform 0.4s var(--ease-luxury);
         }
 
-        .back-to-top:hover { border-bottom-color: var(--color-brown-dark); }
+        .back-to-top:hover { border-bottom-color: var(--color-brown-dark); transform: translateY(-2px); }
 
         /* ============================================================
-           REVEALS
+           REVEALS & STAGGERED ANIMATIONS
            ============================================================ */
         .reveal { opacity: 1; transform: translateY(0); }
 
         .js-ready .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease, transform 0.7s var(--ease-luxury);
+            transform: translateY(30px);
+            transition: opacity 1s var(--ease-luxury), transform 1s var(--ease-luxury);
+            transition-delay: var(--delay, 0ms);
         }
 
         .js-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -910,7 +923,7 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transition: opacity 0.4s var(--ease-luxury), visibility 0.4s var(--ease-luxury);
+            transition: opacity 0.5s var(--ease-luxury), visibility 0.5s var(--ease-luxury);
         }
 
         .modal-overlay.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
@@ -918,9 +931,9 @@
         .modal-backdrop {
             position: absolute;
             inset: 0;
-            background-color: rgba(42, 29, 23, 0.55);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background-color: rgba(42, 29, 23, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .modal-card {
@@ -932,13 +945,13 @@
             max-height: calc(100vh - 48px);
             overflow-y: auto;
             padding: 56px 64px;
-            transform: scale(0.85);
+            transform: scale(0.9) translateY(20px);
             opacity: 0;
-            transition: transform 0.5s var(--ease-luxury), opacity 0.4s var(--ease-luxury);
-            box-shadow: 0 24px 80px rgba(42, 29, 23, 0.18);
+            transition: transform 0.6s var(--ease-luxury), opacity 0.5s var(--ease-luxury);
+            box-shadow: 0 30px 100px rgba(42, 29, 23, 0.25);
         }
 
-        .modal-overlay.is-open .modal-card { transform: scale(1); opacity: 1; }
+        .modal-overlay.is-open .modal-card { transform: scale(1) translateY(0); opacity: 1; }
 
         @media (max-width: 600px) { .modal-card { padding: 40px 28px; } }
 
@@ -952,11 +965,11 @@
             color: var(--color-brown);
             border: 1px solid var(--color-beige-border);
             background-color: var(--color-white);
-            transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s var(--ease-luxury);
+            transition: border-color 0.3s ease, color 0.3s ease, transform 0.4s var(--ease-luxury);
             z-index: 2;
         }
 
-        .modal-close:hover { border-color: var(--color-brown-dark); color: var(--color-brown-dark); transform: rotate(90deg); }
+        .modal-close:hover { border-color: var(--color-brown-dark); color: var(--color-brown-dark); transform: rotate(90deg) scale(1.1); }
         .modal-close:focus-visible { outline: 1px solid var(--color-brown); outline-offset: 3px; }
 
         .modal-icon { width: 48px; height: 48px; margin-bottom: 28px; opacity: 0.8; }
@@ -972,7 +985,7 @@
 
         .modal-title {
             font-size: clamp(1.6rem, 3.4vw, 2.2rem);
-            font-weight: 500;
+            font-weight: 400;
             color: var(--color-brown-dark);
             line-height: 1.22;
             margin-bottom: 24px;
@@ -1000,7 +1013,7 @@
             opacity: 0;
             pointer-events: none;
             transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .toast-notice.is-shown { opacity: 1; transform: translateY(0); }
@@ -1017,6 +1030,7 @@
             .practice-row::after { transition: none !important; }
             .hero-scroll-hint { animation: none !important; }
             .mobile-drawer { transition: none !important; }
+            .practice-row:hover, .map-canvas:hover { transform: none !important; }
         }
     </style>
 </head>
@@ -1160,7 +1174,7 @@
                         </p>
                     </div>
 
-                    <div class="office-pillars reveal">
+                    <div class="office-pillars reveal" style="--delay: 150ms;">
                         <div class="pillar-row">
                             <svg class="pillar-icon" viewBox="0 0 32 32" fill="none" stroke="#3E2B22" stroke-width="1.1" aria-hidden="true">
                                 <rect x="4" y="4" width="24" height="24"/>
@@ -1213,7 +1227,7 @@
                         <span class="portrait-label">Φωτογραφία<br>Πορτρέτου</span>
                     </div>
 
-                    <div class="bio-content">
+                    <div class="bio-content" style="--delay: 150ms;">
                         <span class="section-kicker">Βιογραφικό</span>
                         <h2 class="section-title">Σωτηρία Πανουσάκη</h2>
 
@@ -1245,7 +1259,7 @@
                 </div>
 
                 <div class="practice-list">
-                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Αστικό & Οικογενειακό Δίκαιο">
+                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Αστικό & Οικογενειακό Δίκαιο" style="--delay: 0ms;">
                         <svg class="practice-card-icon" viewBox="0 0 36 36" fill="none" stroke="#3E2B22" stroke-width="1.1" aria-hidden="true">
                             <rect x="5" y="6" width="26" height="24"/>
                             <line x1="18" y1="6" x2="18" y2="30"/>
@@ -1258,7 +1272,7 @@
                         </p>
                     </article>
 
-                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Εμπορικό & Εταιρικό Δίκαιο">
+                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Εμπορικό & Εταιρικό Δίκαιο" style="--delay: 100ms;">
                         <svg class="practice-card-icon" viewBox="0 0 36 36" fill="none" stroke="#3E2B22" stroke-width="1.1" aria-hidden="true">
                             <rect x="6" y="10" width="24" height="20"/>
                             <path d="M13 10V7h10v3"/>
@@ -1270,7 +1284,7 @@
                         </p>
                     </article>
 
-                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Εμπράγματο Δίκαιο & Ακίνητα">
+                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Εμπράγματο Δίκαιο & Ακίνητα" style="--delay: 200ms;">
                         <svg class="practice-card-icon" viewBox="0 0 36 36" fill="none" stroke="#3E2B22" stroke-width="1.1" aria-hidden="true">
                             <polyline points="5,17 18,6 31,17"/>
                             <polyline points="9,15 9,30 27,30 27,15"/>
@@ -1282,7 +1296,7 @@
                         </p>
                     </article>
 
-                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Κληρονομικό Δίκαιο">
+                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Κληρονομικό Δίκαιο" style="--delay: 300ms;">
                         <svg class="practice-card-icon" viewBox="0 0 36 36" fill="none" stroke="#3E2B22" stroke-width="1.1" aria-hidden="true">
                             <path d="M9 6h14l4 4v20H9V6z"/>
                             <line x1="13" y1="15" x2="23" y2="15"/>
@@ -1295,7 +1309,7 @@
                         </p>
                     </article>
 
-                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Διοικητικό Δίκαιο">
+                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Διοικητικό Δίκαιο" style="--delay: 400ms;">
                         <svg class="practice-card-icon" viewBox="0 0 36 36" fill="none" stroke="#3E2B22" stroke-width="1.1" aria-hidden="true">
                             <line x1="6" y1="30" x2="30" y2="30"/>
                             <line x1="10" y1="13" x2="10" y2="30"/>
@@ -1309,7 +1323,7 @@
                         </p>
                     </article>
 
-                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Συμβουλευτική Δικηγορία & Συμβάσεις">
+                    <article class="practice-row reveal" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Άνοιγμα λεπτομερειών: Συμβουλευτική Δικηγορία & Συμβάσεις" style="--delay: 500ms;">
                         <svg class="practice-card-icon" viewBox="0 0 36 36" fill="none" stroke="#3E2B22" stroke-width="1.1" aria-hidden="true">
                             <circle cx="18" cy="18" r="12"/>
                             <polyline points="13,18 16.5,21.5 23.5,14.5"/>
@@ -1359,7 +1373,7 @@
                         </div>
                     </div>
 
-                    <div class="map-minimal reveal">
+                    <div class="map-minimal reveal" style="--delay: 150ms;">
                         <div class="map-header">
                             <span>Σκαρίφημα Θέσης</span>
                             <span>Τ.Κ. 546 26</span>
@@ -1370,7 +1384,7 @@
                                 <rect width="380" height="300" fill="#FAF8F5"/>
                                 <path d="M0 232 Q 150 250, 380 272 L 380 300 L 0 300 Z" fill="#F6F2EC"/>
                                 <path d="M0 232 Q 150 250, 380 272" stroke="#C7B9A5" stroke-width="1"/>
-                                <text x="20" y="268" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="9" letter-spacing="1.8">ΛΙΜΑΝΙ &bull; ΘΕΡΜΑΪΚΟΣ ΚΟΛΠΟΣ</text>
+                                <text x="20" y="268" fill="#7A6A5C" font-family="Didact Gothic, sans-serif" font-size="9" letter-spacing="1.8">ΛΙΜΑΝΙ &bull; ΘΕΡΜΑΪΚΟΣ ΚΟΛΠΟΣ</text>
 
                                 <g stroke="#E5DDD2" stroke-width="1.5">
                                     <line x1="0" y1="64" x2="380" y2="86" stroke-width="2.6"/>
@@ -1382,14 +1396,14 @@
                                 </g>
 
                                 <circle cx="182" cy="75" r="13" fill="#FFFFFF" stroke="#C7B9A5" stroke-width="1"/>
-                                <text x="199" y="54" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8" letter-spacing="1">ΠΛ. ΔΗΜΟΚΡΑΤΙΑΣ</text>
-                                <text x="199" y="64" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8" letter-spacing="1">(ΒΑΡΔΑΡΗΣ)</text>
+                                <text x="199" y="54" fill="#7A6A5C" font-family="Didact Gothic, sans-serif" font-size="8" letter-spacing="1">ΠΛ. ΔΗΜΟΚΡΑΤΙΑΣ</text>
+                                <text x="199" y="64" fill="#7A6A5C" font-family="Didact Gothic, sans-serif" font-size="8" letter-spacing="1">(ΒΑΡΔΑΡΗΣ)</text>
 
-                                <text x="242" y="72" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8.5" letter-spacing="1.3" transform="rotate(3.3 242 72)">ΟΔΟΣ ΕΓΝΑΤΙΑ</text>
-                                <text x="234" y="173" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8.5" letter-spacing="1.3" transform="rotate(3.6 234 173)">ΟΔΟΣ ΤΣΙΜΙΣΚΗ</text>
-                                <text x="171" y="42" fill="#3E2B22" font-family="Zen Maru Gothic, sans-serif" font-size="8.5" letter-spacing="1.2" transform="rotate(-85.1 171 42)">Λ. ΔΩΔΕΚΑΝΗΣΟΥ</text>
-                                <text x="22" y="128" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8" letter-spacing="1">ΔΙΚΑΣΤΙΚΟ</text>
-                                <text x="22" y="139" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8" letter-spacing="1">ΜΕΓΑΡΟ</text>
+                                <text x="242" y="72" fill="#7A6A5C" font-family="Didact Gothic, sans-serif" font-size="8.5" letter-spacing="1.3" transform="rotate(3.3 242 72)">ΟΔΟΣ ΕΓΝΑΤΙΑ</text>
+                                <text x="234" y="173" fill="#7A6A5C" font-family="Didact Gothic, sans-serif" font-size="8.5" letter-spacing="1.3" transform="rotate(3.6 234 173)">ΟΔΟΣ ΤΣΙΜΙΣΚΗ</text>
+                                <text x="171" y="42" fill="#3E2B22" font-family="Didact Gothic, sans-serif" font-size="8.5" letter-spacing="1.2" transform="rotate(-85.1 171 42)">Λ. ΔΩΔΕΚΑΝΗΣΟΥ</text>
+                                <text x="22" y="128" fill="#7A6A5C" font-family="Didact Gothic, sans-serif" font-size="8" letter-spacing="1">ΔΙΚΑΣΤΙΚΟ</text>
+                                <text x="22" y="139" fill="#7A6A5C" font-family="Didact Gothic, sans-serif" font-size="8" letter-spacing="1">ΜΕΓΑΡΟ</text>
 
                                 <g transform="translate(174, 128)">
                                     <circle cx="0" cy="0" r="16" fill="#E5DDD2" fill-opacity="0.65"/>
@@ -1399,15 +1413,15 @@
 
                                 <g transform="translate(192, 108)">
                                     <rect x="0" y="0" width="152" height="38" fill="#FFFFFF" stroke="#3E2B22" stroke-width="0.9"/>
-                                    <text x="10" y="16" fill="#2A1D17" font-family="Zen Maru Gothic, sans-serif" font-size="9.5" font-weight="bold">Λ. Δωδεκανήσου 21</text>
-                                    <text x="10" y="29" fill="#5A4235" font-family="Zen Maru Gothic, sans-serif" font-size="8.5">Δικηγορικό Γραφείο</text>
+                                    <text x="10" y="16" fill="#2A1D17" font-family="Didact Gothic, sans-serif" font-size="9.5" font-weight="bold">Λ. Δωδεκανήσου 21</text>
+                                    <text x="10" y="29" fill="#5A4235" font-family="Didact Gothic, sans-serif" font-size="8.5">Δικηγορικό Γραφείο</text>
                                 </g>
 
                                 <g transform="translate(346, 32)" stroke="#7A6A5C" stroke-width="0.8">
                                     <circle cx="0" cy="0" r="11" fill="#FFFFFF"/>
                                     <line x1="0" y1="-8" x2="0" y2="8"/>
                                     <line x1="-8" y1="0" x2="8" y2="0"/>
-                                    <text x="0" y="-14" text-anchor="middle" fill="#7A6A5C" stroke="none" font-family="Zen Maru Gothic, sans-serif" font-size="8">Β</text>
+                                    <text x="0" y="-14" text-anchor="middle" fill="#7A6A5C" stroke="none" font-family="Didact Gothic, sans-serif" font-size="8">Β</text>
                                 </g>
                             </svg>
                         </div>
@@ -1553,7 +1567,7 @@
                 }
             });
 
-            // 5. IntersectionObserver reveals
+            // 5. IntersectionObserver reveals (Staggered delays handled via CSS --delay)
             const reveals = document.querySelectorAll('.reveal');
             if ('IntersectionObserver' in window) {
                 document.documentElement.classList.add('js-ready');
