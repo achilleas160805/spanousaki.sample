@@ -440,7 +440,8 @@
         /* --------------------------------------------------------- */
 
         .hero-title {
-            font-size: clamp(2.8rem, 7vw, 5.4rem);
+            /* ΜΕΙΩΣΗ ΜΕΓΕΘΟΥΣ: Από 7vw σε 5.5vw και από 5.4rem σε 4.2rem */
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
             font-weight: 400;
             color: var(--color-ivory);
             line-height: 1.05;
@@ -1148,7 +1149,6 @@
 
             <div class="hero-content" id="hero-content">
                 <div class="container">
-                    <!-- Προσθήκη κλάσης hero-fade -->
                     <h1 class="hero-title hero-fade">Σωτηρία Πανουσάκη</h1>
                     <p class="hero-subtitle hero-fade">Δικηγόρος παρ' Αρείω Πάγω &mdash; Θεσσαλονίκη</p>
 
@@ -1528,15 +1528,14 @@
             // 1. Loading screen & Hero Animation Trigger
             function hideLoader() {
                 const loader = document.getElementById('loader');
-                const hero = document.getElementById('hero'); // Παίρνουμε το hero
+                const hero = document.getElementById('hero');
                 if (loader) loader.classList.add('is-hidden');
                 document.body.classList.remove('is-loading');
                 
-                // Μόλις κρυφτεί ο loader, ενεργοποιούμε το premium fade του κειμένου
                 if (hero) {
                     setTimeout(() => {
                         hero.classList.add('hero-loaded');
-                    }, 300); // Μικρή καθυστέρηση για να προλάβει να ξεκινήσει το fade out του loader
+                    }, 300);
                 }
             }
 
