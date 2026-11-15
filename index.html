@@ -51,6 +51,7 @@
 
         body.is-loading { overflow: hidden; }
         body.modal-open { overflow: hidden; }
+        body.menu-open { overflow: hidden; }
 
         em, i, cite, blockquote, address, var, dfn { font-style: normal !important; }
         img, svg { display: block; max-width: 100%; }
@@ -195,7 +196,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
+            gap: 16px;
         }
 
         .brand-link {
@@ -203,6 +204,8 @@
             align-items: center;
             gap: 14px;
             transition: opacity 0.3s ease;
+            flex-shrink: 1;
+            min-width: 0;
         }
 
         .brand-link:hover { opacity: 0.75; }
@@ -216,7 +219,7 @@
 
         .brand-link:hover .brand-logo-svg { transform: rotate(-3deg) scale(1.03); }
 
-        .brand-text { display: flex; flex-direction: column; }
+        .brand-text { display: flex; flex-direction: column; min-width: 0; }
 
         .brand-name {
             font-size: 1.02rem;
@@ -224,6 +227,9 @@
             text-transform: uppercase;
             color: var(--color-brown-dark);
             line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .brand-role {
@@ -232,6 +238,16 @@
             text-transform: uppercase;
             color: var(--color-muted);
             margin-top: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media (max-width: 400px) {
+            .brand-name { font-size: 0.88rem; letter-spacing: 0.12em; }
+            .brand-role { font-size: 0.6rem; letter-spacing: 0.16em; }
+            .brand-logo-svg { width: 34px; height: 34px; }
+            .brand-link { gap: 10px; }
         }
 
         .desktop-nav { display: none; align-items: center; gap: 42px; }
@@ -262,63 +278,103 @@
         .nav-item:hover { color: var(--color-brown-dark); }
         .nav-item:hover::after { transform: scaleX(1); transform-origin: left center; }
 
+        /* Burger Button */
         .burger-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 42px; height: 42px;
+            width: 44px; height: 44px;
             color: var(--color-brown-dark);
             border: 1px solid var(--color-beige-border);
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1002;
         }
 
-        .burger-btn:hover { border-color: var(--color-brown-dark); }
+        .burger-btn:hover { border-color: var(--color-brown-dark); background-color: var(--color-ivory); }
+        .burger-btn:focus-visible { outline: 1px solid var(--color-brown); outline-offset: 2px; }
+
         @media (min-width: 860px) { .burger-btn { display: none; } }
 
+        /* Mobile Drawer */
         .mobile-drawer {
-            display: none;
+            display: block;
             position: fixed;
             top: var(--header-height);
-            left: 0; width: 100%;
+            left: 0; 
+            width: 100%;
+            max-height: calc(100dvh - var(--header-height));
+            overflow-y: auto;
             background-color: var(--color-white);
             border-bottom: 1px solid var(--color-beige-border);
             z-index: 999;
-            padding: 20px 24px 28px;
+            padding: 20px 24px 32px;
             box-shadow: 0 12px 30px rgba(42, 29, 23, 0.06);
+            
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-12px);
+            transition: opacity 0.3s ease, transform 0.3s var(--ease-luxury), visibility 0.3s ease;
         }
 
-        .mobile-drawer.is-open { display: block; }
+        .mobile-drawer.is-open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
 
-        .mobile-nav-list { display: flex; flex-direction: column; list-style: none; }
+        .mobile-nav-list { display: flex; flex-direction: column; list-style: none; margin-bottom: 24px; }
 
         .mobile-nav-list a {
             display: block;
-            padding: 16px 0;
-            font-size: 0.9rem;
+            padding: 18px 0;
+            font-size: 1rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--color-brown-dark);
             border-bottom: 1px solid var(--color-beige-border);
+            transition: padding-left 0.3s var(--ease-luxury), color 0.3s ease;
         }
 
-        .mobile-nav-phones {
-            margin-top: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+        .mobile-nav-list a:hover,
+        .mobile-nav-list a:focus { padding-left: 8px; color: var(--color-brown); }
+
+        .mobile-nav-phones { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
 
         .mobile-nav-phones a {
-            font-size: 0.92rem;
-            letter-spacing: 0.06em;
-            color: var(--color-brown);
-            padding-bottom: 4px;
-            border-bottom: 1px solid var(--color-beige-accent);
-            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            color: var(--color-brown-dark);
+            padding: 14px 20px;
+            border: 1px solid var(--color-beige-border);
+            background-color: var(--color-ivory);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
+        .mobile-nav-phones a:hover { background-color: var(--color-beige-bg); border-color: var(--color-brown); }
+
+        /* Backdrop */
+        .mobile-backdrop {
+            position: fixed;
+            inset: 0;
+            top: var(--header-height);
+            background-color: rgba(42, 29, 23, 0.4);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-backdrop.is-open { opacity: 1; visibility: visible; }
+
         /* ============================================================
-           HERO — FULLSCREEN με φωτογραφία (χωρίς blur filter)
+           HERO — FULLSCREEN με φωτογραφία (IMG tag)
            ============================================================ */
         .hero-section {
             position: relative;
@@ -332,30 +388,28 @@
             border-bottom: 1px solid var(--color-beige-border);
         }
 
-        /* Background: φωτογραφία */
-        .hero-bg {
+        /* Εδώ φορτώνεται η φωτογραφία */
+        .hero-bg-img {
             position: absolute;
             inset: 0;
-            background-image: url('sotiria.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
             z-index: 0;
+            filter: blur(3px) brightness(0.7); /* Ελαφρύ blur για την αίσθηση που θες */
+            transform: scale(1.05); /* Αποφεύγει τα λευκά περιθώρια που δημιουργεί το blur */
         }
 
-        /* Overlay — Προσαρμοσμένο για την φωτογραφία του γραφείου.
-           Σκουραίνει τις άκρες (vignette) ώστε το λευκό κείμενο να διαβάζεται άνετα,
-           αλλά αφήνει το κέντρο (σφυρί/βιβλία) καθαρό. */
         .hero-overlay {
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 40% 50%, rgba(42, 29, 23, 0.2) 0%, rgba(42, 29, 23, 0.75) 100%),
+                radial-gradient(circle at 40% 50%, rgba(42, 29, 23, 0.2) 0%, rgba(42, 29, 23, 0.8) 100%),
                 linear-gradient(90deg, rgba(42, 29, 23, 0.85) 0%, rgba(42, 29, 23, 0.4) 60%, rgba(42, 29, 23, 0.6) 100%);
             z-index: 1;
         }
 
-        /* Περιεχόμενο hero */
         .hero-content {
             position: relative;
             z-index: 2;
@@ -372,11 +426,7 @@
             margin-bottom: 48px;
         }
 
-        .hero-scales-svg {
-            width: 60px;
-            height: 60px;
-            opacity: 0.85;
-        }
+        .hero-scales-svg { width: 60px; height: 60px; opacity: 0.85; }
 
         .hero-location {
             font-size: 0.72rem;
@@ -392,7 +442,7 @@
             line-height: 1.02;
             letter-spacing: -0.022em;
             margin-bottom: 20px;
-            text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+            text-shadow: 0 4px 24px rgba(0,0,0,0.5);
         }
 
         .hero-subtitle {
@@ -401,7 +451,7 @@
             line-height: 1.5;
             margin-bottom: 36px;
             max-width: 620px;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.4);
         }
 
         .hero-address {
@@ -417,17 +467,9 @@
         }
 
         .hero-address svg { stroke: rgba(250, 248, 245, 0.85); }
+        .hero-address:hover { border-bottom-color: var(--color-beige-accent); color: var(--color-ivory); }
 
-        .hero-address:hover {
-            border-bottom-color: var(--color-beige-accent);
-            color: var(--color-ivory);
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 40px; }
 
         .editorial-link {
             position: relative;
@@ -466,7 +508,6 @@
             .hero-content { padding: 100px 0 80px; }
         }
 
-        /* Scroll hint */
         .hero-scroll-hint {
             position: absolute;
             bottom: 32px;
@@ -484,11 +525,7 @@
             animation: hintBounce 2.4s ease-in-out infinite;
         }
 
-        .hero-scroll-hint svg {
-            width: 14px;
-            height: 14px;
-            stroke: rgba(250, 248, 245, 0.6);
-        }
+        .hero-scroll-hint svg { width: 14px; height: 14px; stroke: rgba(250, 248, 245, 0.6); }
 
         @keyframes hintBounce {
             0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
@@ -599,11 +636,7 @@
 
         .bio-grid.is-visible .portrait-minimal::after { transform: scaleX(1); }
 
-        .portrait-placeholder-svg {
-            width: 40px; height: 40px;
-            margin-bottom: 14px;
-            opacity: 0.6;
-        }
+        .portrait-placeholder-svg { width: 40px; height: 40px; margin-bottom: 14px; opacity: 0.6; }
 
         .portrait-label {
             font-size: 0.68rem;
@@ -687,10 +720,7 @@
             transform: translateY(-50%) rotate(90deg);
         }
 
-        .practice-row:focus-visible {
-            outline: 1px solid var(--color-brown);
-            outline-offset: 6px;
-        }
+        .practice-row:focus-visible { outline: 1px solid var(--color-brown); outline-offset: 6px; }
 
         @media (max-width: 768px) {
             .practice-row {
@@ -745,11 +775,7 @@
             border-bottom: 1px solid var(--color-beige-border);
         }
 
-        .contact-group:last-child {
-            padding-bottom: 0;
-            margin-bottom: 0;
-            border-bottom: none;
-        }
+        .contact-group:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
 
         .contact-label {
             display: block;
@@ -782,23 +808,10 @@
 
         .contact-phone-link:hover::after { transform: scaleX(1); }
 
-        .contact-value {
-            font-size: 1.08rem;
-            color: var(--color-brown-dark);
-            line-height: 1.7;
-        }
+        .contact-value { font-size: 1.08rem; color: var(--color-brown-dark); line-height: 1.7; }
+        .contact-subvalue { font-size: 0.92rem; color: var(--color-muted); margin-top: 6px; }
 
-        .contact-subvalue {
-            font-size: 0.92rem;
-            color: var(--color-muted);
-            margin-top: 6px;
-        }
-
-        .map-minimal {
-            display: flex;
-            flex-direction: column;
-            gap: 22px;
-        }
+        .map-minimal { display: flex; flex-direction: column; gap: 22px; }
 
         .map-header {
             display: flex;
@@ -831,19 +844,12 @@
             transition: border-color 0.3s ease, gap 0.3s ease;
         }
 
-        .map-external-link:hover {
-            border-bottom-color: var(--color-brown-dark);
-            gap: 14px;
-        }
+        .map-external-link:hover { border-bottom-color: var(--color-brown-dark); gap: 14px; }
 
         /* ============================================================
            FOOTER
            ============================================================ */
-        .site-footer {
-            background-color: var(--color-ivory);
-            padding: 64px 0 48px;
-            color: var(--color-brown);
-        }
+        .site-footer { background-color: var(--color-ivory); padding: 64px 0 48px; color: var(--color-brown); }
 
         .footer-top {
             display: flex;
@@ -867,7 +873,6 @@
         }
 
         .footer-sep { color: var(--color-beige-accent); }
-
         .footer-info a { transition: color 0.3s ease; }
         .footer-info a:hover { color: var(--color-brown-dark); }
 
@@ -897,10 +902,7 @@
         /* ============================================================
            REVEALS
            ============================================================ */
-        .reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal { opacity: 1; transform: translateY(0); }
 
         .js-ready .reveal {
             opacity: 0;
@@ -908,10 +910,7 @@
             transition: opacity 0.7s ease, transform 0.7s var(--ease-luxury);
         }
 
-        .js-ready .reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .js-ready .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
         /* ============================================================
            MODAL
@@ -930,11 +929,7 @@
             transition: opacity 0.4s var(--ease-luxury), visibility 0.4s var(--ease-luxury);
         }
 
-        .modal-overlay.is-open {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
+        .modal-overlay.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
 
         .modal-backdrop {
             position: absolute;
@@ -959,21 +954,14 @@
             box-shadow: 0 24px 80px rgba(42, 29, 23, 0.18);
         }
 
-        .modal-overlay.is-open .modal-card {
-            transform: scale(1);
-            opacity: 1;
-        }
+        .modal-overlay.is-open .modal-card { transform: scale(1); opacity: 1; }
 
-        @media (max-width: 600px) {
-            .modal-card { padding: 40px 28px; }
-        }
+        @media (max-width: 600px) { .modal-card { padding: 40px 28px; } }
 
         .modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
+            top: 20px; right: 20px;
+            width: 40px; height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -984,23 +972,10 @@
             z-index: 2;
         }
 
-        .modal-close:hover {
-            border-color: var(--color-brown-dark);
-            color: var(--color-brown-dark);
-            transform: rotate(90deg);
-        }
+        .modal-close:hover { border-color: var(--color-brown-dark); color: var(--color-brown-dark); transform: rotate(90deg); }
+        .modal-close:focus-visible { outline: 1px solid var(--color-brown); outline-offset: 3px; }
 
-        .modal-close:focus-visible {
-            outline: 1px solid var(--color-brown);
-            outline-offset: 3px;
-        }
-
-        .modal-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 28px;
-            opacity: 0.8;
-        }
+        .modal-icon { width: 48px; height: 48px; margin-bottom: 28px; opacity: 0.8; }
 
         .modal-kicker {
             display: block;
@@ -1021,12 +996,7 @@
             border-bottom: 1px solid var(--color-beige-border);
         }
 
-        .modal-body {
-            font-size: 1.04rem;
-            color: var(--color-brown);
-            line-height: 1.88;
-        }
-
+        .modal-body { font-size: 1.04rem; color: var(--color-brown); line-height: 1.88; }
         .modal-body p { margin-bottom: 18px; }
         .modal-body p:last-child { margin-bottom: 0; }
 
@@ -1056,27 +1026,19 @@
            ============================================================ */
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .reveal, .js-ready .reveal {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
+            .reveal, .js-ready .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
             .loader-logo { animation: none !important; transform: none !important; }
             .loader-label { animation: none !important; opacity: 1 !important; }
-            .modal-card {
-                transform: none !important;
-                transition: opacity 0.2s ease !important;
-            }
+            .modal-card { transform: none !important; transition: opacity 0.2s ease !important; }
             .practice-row::after { transition: none !important; }
             .hero-scroll-hint { animation: none !important; }
+            .mobile-drawer { transition: none !important; }
         }
     </style>
 </head>
 <body class="is-loading">
 
-    <!-- ============================================================
-         LOADING SCREEN
-         ============================================================ -->
+    <!-- LOADING SCREEN -->
     <div class="loader" id="loader" aria-hidden="true">
         <div class="loader-logo">
             <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1097,9 +1059,7 @@
         <span class="loader-label">Σωτηρία Πανουσάκη</span>
     </div>
 
-    <!-- ============================================================
-         HEADER
-         ============================================================ -->
+    <!-- HEADER -->
     <header class="site-header" id="site-header">
         <div class="container header-inner">
             <a href="#top" class="brand-link" aria-label="Αρχική — Σωτηρία Πανουσάκη">
@@ -1130,19 +1090,21 @@
                 <a href="#contact" class="nav-item">Επικοινωνία</a>
             </nav>
 
-            <button type="button" class="burger-btn" id="burger-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Μενού πλοήγησης">
-                <svg id="icon-burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                    <line x1="3" y1="7" x2="21" y2="7"/>
+            <button type="button" class="burger-btn" id="burger-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Άνοιγμα μενού πλοήγησης">
+                <svg id="icon-burger" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
                     <line x1="3" y1="12" x2="21" y2="12"/>
-                    <line x1="3" y1="17" x2="21" y2="17"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
                 </svg>
-                <svg id="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="display: none;">
-                    <line x1="5" y1="5" x2="19" y2="19"/>
-                    <line x1="19" y1="5" x2="5" y2="19"/>
+                <svg id="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="display: none;">
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                    <line x1="18" y1="6" x2="6" y2="18"/>
                 </svg>
             </button>
         </div>
     </header>
+
+    <div class="mobile-backdrop" id="mobile-backdrop" aria-hidden="true"></div>
 
     <div class="mobile-drawer" id="mobile-drawer">
         <ul class="mobile-nav-list">
@@ -1152,17 +1114,17 @@
             <li><a href="#contact" class="mobile-link">Επικοινωνία</a></li>
         </ul>
         <div class="mobile-nav-phones">
-            <a href="tel:+302310536977">Σταθερό — 2310 536 977</a>
-            <a href="tel:#contact" class="mobile-link">Κινητό — 6945 295 180</a>
+            <a href="tel:+302310536977">Τηλέφωνο Γραφείου: 2310 536 977</a>
+            <a href="tel:+306945295180">Κινητό: 6945 295 180</a>
         </div>
     </div>
 
     <main id="top">
-        <!-- ============================================================
-             HERO — FULLSCREEN με φωτογραφία
-             ============================================================ -->
+        <!-- HERO -->
         <section class="hero-section" id="hero">
-            <div class="hero-bg" aria-hidden="true"></div>
+            <!-- Εδώ φορτώνεται η φωτογραφία -->
+            <img src="sotiria.jpg" alt="Δικηγορικό Γραφείο Σωτηρίας Πανουσάκη" class="hero-bg-img">
+            
             <div class="hero-overlay" aria-hidden="true"></div>
 
             <div class="hero-content" id="hero-content">
@@ -1218,9 +1180,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-             ΚΕΦΑΛΑΙΟ 1: ΤΟ ΓΡΑΦΕΙΟ
-             ============================================================ -->
+        <!-- ΚΕΦΑΛΑΙΟ 1 -->
         <section id="office" class="page-section bg-ivory">
             <div class="container">
                 <div class="office-grid">
@@ -1276,9 +1236,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-             ΚΕΦΑΛΑΙΟ 2: ΒΙΟΓΡΑΦΙΚΟ
-             ============================================================ -->
+        <!-- ΚΕΦΑΛΑΙΟ 2 -->
         <section id="biography" class="page-section bg-white">
             <div class="container">
                 <div class="bio-grid reveal">
@@ -1310,9 +1268,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-             ΚΕΦΑΛΑΙΟ 3: ΤΟΜΕΙΣ ΔΙΚΑΙΟΥ
-             ============================================================ -->
+        <!-- ΚΕΦΑΛΑΙΟ 3 -->
         <section id="practice" class="page-section bg-ivory">
             <div class="container">
                 <div class="practice-intro reveal">
@@ -1402,9 +1358,7 @@
             </div>
         </section>
 
-        <!-- ============================================================
-             ΚΕΦΑΛΑΙΟ 4: ΕΠΙΚΟΙΝΩΝΙΑ
-             ============================================================ -->
+        <!-- ΚΕΦΑΛΑΙΟ 4 -->
         <section id="contact" class="page-section bg-white">
             <div class="container">
                 <div class="practice-intro reveal">
@@ -1546,9 +1500,7 @@
         </div>
     </footer>
 
-    <!-- ============================================================
-         MODAL
-         ============================================================ -->
+    <!-- MODAL -->
     <div class="modal-overlay" id="practice-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-backdrop" data-modal-close></div>
         <div class="modal-card" role="document">
@@ -1597,29 +1549,44 @@
                 lastScroll = y;
             }, { passive: true });
 
-            // 4. Mobile menu
+            // 4. Mobile Menu Logic
             const burgerBtn = document.getElementById('burger-btn');
             const mobileDrawer = document.getElementById('mobile-drawer');
+            const mobileBackdrop = document.getElementById('mobile-backdrop');
             const iconBurger = document.getElementById('icon-burger');
             const iconClose = document.getElementById('icon-close');
+
+            function openMenu() {
+                burgerBtn?.setAttribute('aria-expanded', 'true');
+                mobileDrawer?.classList.add('is-open');
+                mobileBackdrop?.classList.add('is-open');
+                document.body.classList.add('menu-open');
+                if (iconBurger) iconBurger.style.display = 'none';
+                if (iconClose) iconClose.style.display = 'block';
+            }
 
             function closeMenu() {
                 burgerBtn?.setAttribute('aria-expanded', 'false');
                 mobileDrawer?.classList.remove('is-open');
+                mobileBackdrop?.classList.remove('is-open');
+                document.body.classList.remove('menu-open');
                 if (iconBurger) iconBurger.style.display = 'block';
                 if (iconClose) iconClose.style.display = 'none';
             }
 
             burgerBtn?.addEventListener('click', () => {
-                const isOpen = mobileDrawer.classList.contains('is-open');
-                if (isOpen) { closeMenu(); return; }
-                burgerBtn.setAttribute('aria-expanded', 'true');
-                mobileDrawer.classList.add('is-open');
-                if (iconBurger) iconBurger.style.display = 'none';
-                if (iconClose) iconClose.style.display = 'block';
+                const isOpen = mobileDrawer?.classList.contains('is-open');
+                if (isOpen) { closeMenu(); } else { openMenu(); }
             });
 
             document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+            mobileBackdrop?.addEventListener('click', closeMenu);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (mobileDrawer?.classList.contains('is-open')) closeMenu();
+                }
+            });
 
             // 5. IntersectionObserver reveals
             const reveals = document.querySelectorAll('.reveal');
@@ -1673,7 +1640,7 @@
                 updateHero();
             }
 
-            // 7. Modal για τους Τομείς Δικαίου
+            // 7. Modal
             const practiceModal = document.getElementById('practice-modal');
             const modalTitle = document.getElementById('modal-title');
             const modalBody = document.getElementById('modal-body');
