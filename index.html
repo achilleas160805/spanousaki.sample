@@ -59,7 +59,7 @@
         ::selection { background-color: var(--color-beige-border); color: var(--color-brown-dark); }
 
         /* ============================================================
-           LOADING SCREEN
+           LOADING SCREEN — ζυγός που ταλαντεύεται
            ============================================================ */
         .loader {
             position: fixed;
@@ -70,8 +70,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 24px;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            gap: 32px;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
         }
 
         .loader.is-hidden {
@@ -81,44 +81,32 @@
         }
 
         .loader-logo {
-            width: 64px;
-            height: 64px;
-            animation: loaderPulse 2s ease-in-out infinite;
+            width: 80px;
+            height: 80px;
+            animation: scalesSwing 2.4s ease-in-out infinite;
+            transform-origin: 50% 18%;
         }
 
         .loader-logo svg { width: 100%; height: 100%; }
 
-        .loader-line {
-            width: 100px;
-            height: 1px;
-            background-color: var(--color-beige-border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loader-line::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: var(--color-brown);
-            transform: translateX(-100%);
-            animation: loaderLine 1.2s var(--ease-luxury) 0.2s forwards;
-        }
-
         .loader-label {
-            font-size: 0.66rem;
-            letter-spacing: 0.4em;
+            font-size: 0.72rem;
+            letter-spacing: 0.5em;
             text-transform: uppercase;
             color: var(--color-muted);
+            padding-left: 0.5em;
+            opacity: 0;
+            animation: loaderLabelIn 1s var(--ease-luxury) 0.25s forwards;
         }
 
-        @keyframes loaderPulse {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; }
+        @keyframes scalesSwing {
+            0%, 100% { transform: rotate(-6deg); }
+            50% { transform: rotate(6deg); }
         }
 
-        @keyframes loaderLine {
-            to { transform: translateX(0); }
+        @keyframes loaderLabelIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ============================================================
@@ -1020,8 +1008,8 @@
                 transition: none !important;
             }
             .hero-title .word > span { transform: none !important; transition: none !important; }
-            .loader-logo, .loader-line::after { animation: none !important; }
-            .loader-line::after { transform: translateX(0) !important; }
+            .loader-logo { animation: none !important; transform: none !important; }
+            .loader-label { animation: none !important; opacity: 1 !important; }
             .modal-card {
                 transform: none !important;
                 transition: opacity 0.2s ease !important;
@@ -1033,7 +1021,7 @@
 <body class="is-loading">
 
     <!-- ============================================================
-         LOADING SCREEN
+         LOADING SCREEN — ζυγός που ταλαντεύεται
          ============================================================ -->
     <div class="loader" id="loader" aria-hidden="true">
         <div class="loader-logo">
@@ -1052,8 +1040,7 @@
                 <path d="M32 24.5 Q36 27.5 40 24.5" stroke="#3E2B22" stroke-width="1.2" stroke-linecap="round"/>
             </svg>
         </div>
-        <div class="loader-line"></div>
-        <span class="loader-label">Πανουσάκη</span>
+        <span class="loader-label">Σωτηρία Πανουσάκη</span>
     </div>
 
     <!-- ============================================================
@@ -1517,15 +1504,15 @@
 
     <script>
         (function () {
-            // 1. Loading screen
+            // 1. Loading screen — κρατάει περισσότερο (1.4s)
             function hideLoader() {
                 const loader = document.getElementById('loader');
                 if (loader) loader.classList.add('is-hidden');
                 document.body.classList.remove('is-loading');
             }
 
-            window.addEventListener('load', () => setTimeout(hideLoader, 500));
-            setTimeout(hideLoader, 1800);
+            window.addEventListener('load', () => setTimeout(hideLoader, 1400));
+            setTimeout(hideLoader, 3200); // fallback
 
             // 2. Footer year
             const yearEl = document.getElementById('footer-year');
@@ -1591,7 +1578,8 @@
                 const hero = document.querySelector('.hero-section');
                 if (hero) hero.classList.add('is-revealed');
             }
-            window.addEventListener('load', () => setTimeout(revealHero, 650));
+            // Καθυστέρηση για να προλάβει να φύγει ο loader
+            window.addEventListener('load', () => setTimeout(revealHero, 1550));
 
             // 6. IntersectionObserver reveals
             const reveals = document.querySelectorAll('.reveal');
@@ -1606,7 +1594,7 @@
                     });
                 }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
                 reveals.forEach(el => io.observe(el));
-                setTimeout(() => reveals.forEach(el => el.classList.add('is-visible')), 2500);
+                setTimeout(() => reveals.forEach(el => el.classList.add('is-visible')), 3000);
             }
 
             // 7. Modal για τους Τομείς Δικαίου
