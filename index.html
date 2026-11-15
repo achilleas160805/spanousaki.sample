@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="el" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Σωτηρία Πανουσάκη | Δικηγόρος Θεσσαλονίκης</title>
+    <meta name="description" content="Δικηγορικό Γραφείο Σωτηρίας Πανουσάκη στη Θεσσαλονίκη. Λεωφόρος Δωδεκανήσου 21. Αστικό, Εμπορικό, Κληρονομικό και Ποινικό Δίκαιο.">
+
+    <!-- Google Fonts: Tinos (400, 700 - strictly upright Roman) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Tinos', 'Georgia', 'Times New Roman', 'serif'],
+                        sans: ['Tinos', 'Georgia', 'serif'],
+                    },
+                    colors: {
+                        paper: '#FFFFFF',
+                        ivory: '#FCFBFA',
+                        beige: {
+                            light: '#F5F0E8',
+                            DEFAULT: '#E8DFD1',
+                            taupe: '#D4C5B3',
+                            muted: '#8C7A6B',
+                        },
+                        espresso: {
+                            light: '#5C4336',
+                            DEFAULT: '#3E2723',
+                            dark: '#2C1D16',
+                        }
+                    },
+                    transitionTimingFunction: {
+                        'editorial': 'cubic-bezier(0.22, 1, 0.36, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Βασικές ρυθμίσεις τυπογραφίας & ομαλής απόδοσης */
+        :root {
+            --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        html {
+            font-family: 'Tinos', Georgia, serif;
+            font-style: normal;
+            background-color: #FFFFFF;
+            color: #2C1D16;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        em, i, blockquote, cite, address {
+            font-style: normal;
+        }
+
+        body {
+            overflow-x: hidden;
+            selection-background-color: #E8DFD1;
+        }
+
+        ::selection {
+            background-color: #E8DFD1;
+            color: #2C1D16;
+        }
+
+        /* GPU-accelerated Editorial Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translate3d(0, 24px, 0);
+            transition: opacity 0.85s var(--ease-editorial), transform 0.85s var(--ease-editorial);
+            will-change: opacity, transform;
+        }
+
+        .reveal-up.is-visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* Λεπτές αρχιτεκτονικές γραμμές που σχεδιάζονται κατά το scroll */
+        .hairline-draw {
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 1.1s var(--ease-editorial);
+            will-change: transform;
+        }
+
+        .hairline-draw.is-visible {
+            transform: scaleX(1);
+        }
+
+        /* Υπογράμμιση συνδέσμων πλοήγησης */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 1px;
+            background-color: #3E2723;
+            transform: scaleX(0);
+            transform-origin: right center;
+            transition: transform 0.45s var(--ease-editorial);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus-visible::after {
+            transform: scaleX(1);
+            transform-origin: left center;
+        }
+
+        /* Πολυτελές κουμπί κλήσης με ομαλή μετάβαση */
+        .editorial-btn {
+            position: relative;
+            overflow: hidden;
+            transition: color 0.45s var(--ease-editorial), border-color 0.45s var(--ease-editorial), background-color 0.45s var(--ease-editorial);
+        }
+
+        .editorial-btn-primary {
+            background-color: #3E2723;
+            color: #FFFFFF;
+            border: 1px solid #3E2723;
+        }
+
+        .editorial-btn-primary:hover {
+            background-color: #2C1D16;
+            border-color: #2C1D16;
+        }
+
+        .editorial-btn-secondary {
+            background-color: transparent;
+            color: #3E2723;
+            border: 1px solid #D4C5B3;
+        }
+
+        .editorial-btn-secondary:hover {
+            background-color: #F5F0E8;
+            border-color: #3E2723;
+        }
+
+        /* Accordion τομέων δικαίου (smooth grid-template-rows transition) */
+        .practice-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.5s var(--ease-editorial);
+        }
+
+        .practice-item[data-open="true"] .practice-content {
+            grid-template-rows: 1fr;
+        }
+
+        .practice-inner {
+            overflow: hidden;
+        }
+
+        .practice-icon {
+            transition: transform 0.45s var(--ease-editorial);
+        }
+
+        .practice-item[data-open="true"] .practice-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Διακριτικό Toast Ειδοποίησης Αντιγραφής */
+        .copy-toast {
+            opacity: 0;
+            transform: translate3d(0, 12px, 0);
+            pointer-events: none;
+            transition: opacity 0.35s var(--ease-editorial), transform 0.35s var(--ease-editorial);
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* Σεβασμός στο prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal-up {
+                opacity: 1;
+                transform: none;
+            }
+            .hairline-draw {
+                transform: scaleX(1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-paper text-espresso-dark antialiased selection:bg-beige selection:text-espresso-dark">
+
+    <!-- Minimal Sticky Header -->
+    <header id="site-header" class="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm border-b border-beige transition-colors duration-500">
+        <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 h-20 sm:h-24 flex items-center justify-between">
+            
+            <!-- Bespoke Scales of Justice SVG Emblem & Name -->
+            <a href="#top" class="group flex items-center gap-3.5 focus:outline-none" aria-label="Αρχική σελίδα — Σωτηρία Πανουσάκη">
+                <svg class="w-11 h-11 text-espresso transition-transform duration-500 ease-editorial group-hover:scale-[1.03]" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="1" y="1" width="46" height="46" stroke="#3E2723" stroke-width="1"/>
+                    <rect x="4.5" y="4.5" width="39" height="39" stroke="#D4C5B3" stroke-width="0.75"/>
+                    <!-- Central Pillar & Classical Pedestal -->
+                    <line x1="24" y1="10.5" x2="24" y2="36.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                    <circle cx="24" cy="9.5" r="1.2" fill="#3E2723"/>
+                    <line x1="18.5" y1="36.5" x2="29.5" y2="36.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                    <line x1="16.5" y1="38.5" x2="31.5" y2="38.5" stroke="#8C7A6B" stroke-width="0.9" stroke-linecap="round"/>
+                    <!-- Balance Beam & Pivot -->
+                    <line x1="12" y1="15.5" x2="36" y2="15.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                    <circle cx="24" cy="15.5" r="1.6" fill="#FFFFFF" stroke="#3E2723" stroke-width="1.1"/>
+                    <!-- Left Suspended Pan -->
+                    <polyline points="12,15.5 8.5,24.5 15.5,24.5 12,15.5" stroke="#8C7A6B" stroke-width="0.85" stroke-linejoin="round"/>
+                    <path d="M8 24.5 Q12 27.5 16 24.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                    <!-- Right Suspended Pan -->
+                    <polyline points="36,15.5 32.5,24.5 39.5,24.5 36,15.5" stroke="#8C7A6B" stroke-width="0.85" stroke-linejoin="round"/>
+                    <path d="M32 24.5 Q36 27.5 40 24.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                </svg>
+                <div class="flex flex-col">
+                    <span class="text-base sm:text-lg tracking-[0.14em] uppercase text-espresso-dark font-normal leading-tight">
+                        Σωτηρία Πανουσάκη
+                    </span>
+                    <span class="text-xs tracking-[0.18em] uppercase text-beige-muted mt-0.5">
+                        Δικηγόρος &bull; Θεσσαλονίκη
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-9 text-sm tracking-[0.1em] uppercase text-espresso" aria-label="Κύρια Πλοήγηση">
+                <a href="#profile" class="nav-link py-1">Το Γραφείο</a>
+                <a href="#practice" class="nav-link py-1">Τομείς Δικαίου</a>
+                <a href="#principles" class="nav-link py-1">Προσέγγιση</a>
+                <a href="#contact" class="nav-link py-1">Επικοινωνία</a>
+            </nav>
+
+            <!-- Direct Phone Action (Desktop) & Mobile Menu Button -->
+            <div class="flex items-center gap-4">
+                <a href="tel:+302310536977" class="hidden lg:inline-flex items-center gap-2.5 text-sm tracking-[0.08em] text-espresso hover:text-espresso-dark transition-colors duration-300 border-b border-beige-taupe pb-0.5 hover:border-espresso">
+                    <svg class="w-3.5 h-3.5 text-espresso" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+                        <path d="M3.2 1.8h2.6l1.1 3.1-1.5 1.2a9.2 9.2 0 0 0 4.5 4.5l1.2-1.5 3.1 1.1v2.6c0 .8-.7 1.4-1.5 1.4C6.4 14.2 1.8 9.6 1.8 3.3c0-.8.6-1.5 1.4-1.5Z"/>
+                    </svg>
+                    <span>2310 536 977</span>
+                </a>
+
+                <button id="mobile-menu-btn" type="button" class="md:hidden p-2.5 text-espresso focus:outline-none" aria-expanded="false" aria-controls="mobile-menu" aria-label="Άνοιγμα μενού πλοήγησης">
+                    <svg id="menu-icon-open" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1">
+                        <line x1="3" y1="7" x2="21" y2="7"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="8" y1="17" x2="21" y2="17"/>
+                    </svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1">
+                        <line x1="5" y1="5" x2="19" y2="19"/>
+                        <line x1="19" y1="5" x2="5" y2="19"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-ivory border-b border-beige px-6 pt-4 pb-8">
+            <nav class="flex flex-col space-y-4 text-base tracking-[0.1em] uppercase text-espresso" aria-label="Πλοήγηση Κινητού">
+                <a href="#profile" class="mobile-nav-link py-2 border-b border-beige/70">Το Γραφείο</a>
+                <a href="#practice" class="mobile-nav-link py-2 border-b border-beige/70">Τομείς Δικαίου</a>
+                <a href="#principles" class="mobile-nav-link py-2 border-b border-beige/70">Προσέγγιση</a>
+                <a href="#contact" class="mobile-nav-link py-2 border-b border-beige/70">Επικοινωνία</a>
+            </nav>
+            <div class="mt-6 pt-2 flex flex-col gap-3">
+                <a href="tel:+302310536977" class="editorial-btn editorial-btn-primary py-3 px-5 text-center text-sm tracking-[0.12em] uppercase">
+                    Γραφείο: 2310 536 977
+                </a>
+                <a href="tel:+306945295180" class="editorial-btn editorial-btn-secondary py-3 px-5 text-center text-sm tracking-[0.12em] uppercase">
+                    Κινητό: 6945 295 180
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- HERO SECTION -->
+        <section class="relative bg-paper pt-16 pb-20 sm:pt-24 sm:pb-28 lg:pt-32 lg:pb-36 border-b border-beige">
+            <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    
+                    <!-- Left Editorial Column -->
+                    <div class="lg:col-span-8">
+                        <div class="reveal-up flex items-center gap-4 mb-8">
+                            <span class="inline-block w-10 h-px bg-espresso"></span>
+                            <p class="text-xs sm:text-sm tracking-[0.22em] uppercase text-beige-muted">
+                                Δικηγορικό Γραφείο &bull; Θεσσαλονίκη
+                            </p>
+                        </div>
+
+                        <h1 class="reveal-up text-4xl sm:text-6xl lg:text-[4.25rem] font-normal text-espresso-dark tracking-[-0.01em] leading-[1.12] mb-6" style="transition-delay: 80ms;">
+                            Σωτηρία Πανουσάκη
+                        </h1>
+
+                        <p class="reveal-up text-xl sm:text-2xl text-espresso-light leading-relaxed mb-10 max-w-2xl" style="transition-delay: 160ms;">
+                            Δικηγόρος Θεσσαλονίκης — Νομικές Υπηρεσίες Υψηλών Απαιτήσεων, Δικαστηριακή Εκπροσώπηση &amp; Συμβουλευτική Δικηγορία.
+                        </p>
+
+                        <div class="hairline-draw w-full h-px bg-beige mb-10"></div>
+
+                        <blockquote class="reveal-up text-base sm:text-lg text-espresso leading-[1.85] max-w-2xl mb-12" style="transition-delay: 220ms;">
+                            «Η ουσιαστική νομική υπεράσπιση θεμελιώνεται στη μεθοδική μελέτη κάθε λεπτομέρειας, στη στρατηγική διορατικότητα και στην αδιαπραγμάτευτη προσήλωση στην προστασία των δικαιωμάτων του εντολέα.»
+                        </blockquote>
+
+                        <!-- Direct Call Actions (No Forms) -->
+                        <div class="reveal-up flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5" style="transition-delay: 280ms;">
+                            <a href="tel:+302310536977" class="editorial-btn editorial-btn-primary px-7 py-4 text-sm tracking-[0.14em] uppercase inline-flex items-center justify-center gap-3 rounded-none">
+                                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+                                    <path d="M3.2 1.8h2.6l1.1 3.1-1.5 1.2a9.2 9.2 0 0 0 4.5 4.5l1.2-1.5 3.1 1.1v2.6c0 .8-.7 1.4-1.5 1.4C6.4 14.2 1.8 9.6 1.8 3.3c0-.8.6-1.5 1.4-1.5Z"/>
+                                </svg>
+                                <span>Κλήση Γραφείου &mdash; 2310 536 977</span>
+                            </a>
+
+                            <a href="tel:+306945295180" class="editorial-btn editorial-btn-secondary px-7 py-4 text-sm tracking-[0.14em] uppercase inline-flex items-center justify-center gap-3 rounded-none">
+                                <span>Άμεση Επικοινωνία &mdash; 6945 295 180</span>
+                                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+                                    <line x1="2" y1="8" x2="14" y2="8"/>
+                                    <polyline points="9.5 3.5 14 8 9.5 12.5"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Architectural Minimal Panel -->
+                    <div class="lg:col-span-4 lg:mt-6 reveal-up" style="transition-delay: 240ms;">
+                        <div class="bg-beige-light/60 border border-beige p-8 sm:p-10 relative overflow-hidden">
+                            <!-- Bespoke Scales of Justice Emblem SVG -->
+                            <div class="mb-8 flex justify-between items-start">
+                                <svg class="w-16 h-16 text-espresso" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <!-- Classical Pedestal Base -->
+                                    <line x1="16" y1="56" x2="48" y2="56" stroke="#3E2723" stroke-width="1.2" stroke-linecap="round"/>
+                                    <line x1="21" y1="52.5" x2="43" y2="52.5" stroke="#8C7A6B" stroke-width="0.9" stroke-linecap="round"/>
+                                    <!-- Central Vertical Pillar & Finial -->
+                                    <line x1="32" y1="11" x2="32" y2="52.5" stroke="#3E2723" stroke-width="1.2" stroke-linecap="round"/>
+                                    <circle cx="32" cy="9.5" r="1.5" fill="#3E2723"/>
+                                    <!-- Horizontal Balance Beam & Pivot -->
+                                    <line x1="11" y1="19" x2="53" y2="19" stroke="#3E2723" stroke-width="1.2" stroke-linecap="round"/>
+                                    <circle cx="32" cy="19" r="2.2" fill="#F5F0E8" stroke="#3E2723" stroke-width="1.15"/>
+                                    <circle cx="11" cy="19" r="1.3" fill="#3E2723"/>
+                                    <circle cx="53" cy="19" r="1.3" fill="#3E2723"/>
+                                    <!-- Left Scale Pan -->
+                                    <polyline points="11,19 5.5,34 16.5,34 11,19" stroke="#8C7A6B" stroke-width="0.95" stroke-linejoin="round"/>
+                                    <path d="M5 34 Q11 38.5 17 34" stroke="#3E2723" stroke-width="1.2" stroke-linecap="round"/>
+                                    <!-- Right Scale Pan -->
+                                    <polyline points="53,19 47.5,34 58.5,34 53,19" stroke="#8C7A6B" stroke-width="0.95" stroke-linejoin="round"/>
+                                    <path d="M47 34 Q53 38.5 59 34" stroke="#3E2723" stroke-width="1.2" stroke-linecap="round"/>
+                                </svg>
+                                <span class="text-xs tracking-[0.2em] uppercase text-beige-muted">Έδρα</span>
+                            </div>
+
+                            <div class="space-y-6 text-sm leading-relaxed">
+                                <div>
+                                    <p class="text-xs tracking-[0.18em] uppercase text-beige-muted mb-1.5">Διεύθυνση Γραφείου</p>
+                                    <p class="text-base text-espresso-dark">Λεωφόρος Δωδεκανήσου 21</p>
+                                    <p class="text-espresso-light">546 26, Κέντρο Θεσσαλονίκης</p>
+                                </div>
+
+                                <div class="h-px bg-beige w-full"></div>
+
+                                <div>
+                                    <p class="text-xs tracking-[0.18em] uppercase text-beige-muted mb-1.5">Τηλεφωνική Γραμμή</p>
+                                    <p><a href="tel:+302310536977" class="text-base text-espresso-dark hover:text-espresso-light transition-colors">2310 536 977</a></p>
+                                    <p><a href="tel:+306945295180" class="text-base text-espresso-dark hover:text-espresso-light transition-colors">6945 295 180</a></p>
+                                </div>
+
+                                <div class="h-px bg-beige w-full"></div>
+
+                                <div>
+                                    <p class="text-xs tracking-[0.18em] uppercase text-beige-muted mb-1.5">Υποδοχή Εντολέων</p>
+                                    <p class="text-espresso-light">Κατόπιν τηλεφωνικής συνεννόησης</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 01: ΤΟ ΓΡΑΦΕΙΟ & ΤΟ ΠΡΟΦΙΛ -->
+        <section id="profile" class="py-20 sm:py-28 lg:py-32 bg-ivory border-b border-beige">
+            <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left Architectural SVG Illustration -->
+                    <div class="lg:col-span-5 reveal-up">
+                        <div class="bg-paper border border-beige p-8 sm:p-12 flex flex-col justify-between">
+                            <svg class="w-full h-auto max-h-80 text-espresso" viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Αρχιτεκτονικό γραμμικό σχέδιο">
+                                <!-- Outer Editorial Frame -->
+                                <rect x="16" y="16" width="328" height="288" stroke="#E8DFD1" stroke-width="1"/>
+                                <rect x="28" y="28" width="304" height="264" stroke="#D4C5B3" stroke-width="0.75"/>
+                                
+                                <!-- Architectural Balance & Geometry -->
+                                <line x1="180" y1="54" x2="180" y2="254" stroke="#3E2723" stroke-width="1.1"/>
+                                <line x1="120" y1="254" x2="240" y2="254" stroke="#3E2723" stroke-width="1.1"/>
+                                <line x1="140" y1="246" x2="220" y2="246" stroke="#8C7A6B" stroke-width="0.75"/>
+                                
+                                <!-- Concentric Precision Circles -->
+                                <circle cx="180" cy="144" r="68" stroke="#D4C5B3" stroke-width="0.85"/>
+                                <circle cx="180" cy="144" r="44" stroke="#3E2723" stroke-width="0.9"/>
+                                
+                                <!-- Horizontal Equilibrium Beam -->
+                                <line x1="88" y1="144" x2="272" y2="144" stroke="#3E2723" stroke-width="1.1"/>
+                                <circle cx="88" cy="144" r="3" fill="#3E2723"/>
+                                <circle cx="272" cy="144" r="3" fill="#3E2723"/>
+                                <circle cx="180" cy="144" r="4" fill="#FFFFFF" stroke="#3E2723" stroke-width="1.1"/>
+
+                                <!-- Subtle Suspended Geometry -->
+                                <line x1="88" y1="144" x2="68" y2="184" stroke="#8C7A6B" stroke-width="0.75"/>
+                                <line x1="88" y1="144" x2="108" y2="184" stroke="#8C7A6B" stroke-width="0.75"/>
+                                <line x1="64" y1="184" x2="112" y2="184" stroke="#3E2723" stroke-width="1"/>
+
+                                <line x1="272" y1="144" x2="252" y2="184" stroke="#8C7A6B" stroke-width="0.75"/>
+                                <line x1="272" y1="144" x2="292" y2="184" stroke="#8C7A6B" stroke-width="0.75"/>
+                                <line x1="248" y1="184" x2="296" y2="184" stroke="#3E2723" stroke-width="1"/>
+                            </svg>
+                            <div class="mt-6 pt-5 border-t border-beige flex justify-between items-center text-xs tracking-[0.16em] uppercase text-beige-muted">
+                                <span>Θεσσαλονίκη</span>
+                                <span>Λ. Δωδεκανήσου 21</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Narrative Text -->
+                    <div class="lg:col-span-7 reveal-up" style="transition-delay: 120ms;">
+                        <p class="text-xs tracking-[0.22em] uppercase text-beige-muted mb-4">
+                            01 &mdash; Το Γραφείο &amp; Το Προφίλ
+                        </p>
+                        <h2 class="text-3xl sm:text-4xl lg:text-[2.6rem] font-normal text-espresso-dark leading-[1.2] mb-8">
+                            Αυστηρή νομική τεκμηρίωση και προσωπική ευθύνη σε κάθε υπόθεση.
+                        </h2>
+
+                        <div class="space-y-6 text-base sm:text-[1.08rem] text-espresso leading-[1.85]">
+                            <p>
+                                Το Δικηγορικό Γραφείο της <strong>Σωτηρίας Πανουσάκη</strong> εδρεύει στο κέντρο της Θεσσαλονίκης, επί της Λεωφόρου Δωδεκανήσου 21, παρέχοντας ολοκληρωμένη δικαστηριακή και συμβουλευτική νομική υποστήριξη σε ιδιώτες και επιχειρήσεις.
+                            </p>
+                            <p>
+                                Με σταθερό προσανατολισμό στην ποιότητα αντί της τυποποιημένης διεκπεραίωσης, κάθε υπόθεση αντιμετωπίζεται εξατομικευμένα από το στάδιο της προληπτικής συμβουλευτικής έως την τελική δικαστική δικαίωση. Η άμεση επικοινωνία με τον εντολέα, η σαφής αποτύπωση των νομικών επιλογών και η εις βάθος γνώση της νομολογίας αποτελούν τον πυρήνα της λειτουργίας του γραφείου.
+                            </p>
+                        </div>
+
+                        <div class="hairline-draw w-full h-px bg-beige my-9"></div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+                            <div>
+                                <p class="text-xs tracking-[0.16em] uppercase text-beige-muted mb-1">Δικαστηριακή Πρακτική</p>
+                                <p class="text-espresso-dark text-base">Εκπροσώπηση ενώπιον των Δικαστηρίων Θεσσαλονίκης και όλης της Επικράτειας.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs tracking-[0.16em] uppercase text-beige-muted mb-1">Συμβουλευτική Δικηγορία</p>
+                                <p class="text-espresso-dark text-base">Σύνταξη συμβάσεων, νομικοί έλεγχοι τίτλων και εξωδικαστική επίλυση διαφορών.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 02: ΤΟΜΕΙΣ ΕΞΕΙΔΙΚΕΥΣΗΣ (01 - 06) -->
+        <section id="practice" class="py-20 sm:py-28 lg:py-32 bg-paper border-b border-beige">
+            <div class="max-w-5xl mx-auto px-6 sm:px-10 lg:px-12">
+                
+                <div class="reveal-up max-w-2xl mb-14 sm:mb-16">
+                    <p class="text-xs tracking-[0.22em] uppercase text-beige-muted mb-4">
+                        02 &mdash; Τομείς Εξειδίκευσης
+                    </p>
+                    <h2 class="text-3xl sm:text-4xl lg:text-[2.6rem] font-normal text-espresso-dark leading-[1.2] mb-5">
+                        Πεδία Νομικής Δραστηριότητας
+                    </h2>
+                    <p class="text-base sm:text-lg text-espresso-light leading-relaxed">
+                        Επιλέξτε έναν τομέα δικαίου για να δείτε αναλυτικά τις παρεχόμενες υπηρεσίες του γραφείου.
+                    </p>
+                </div>
+
+                <!-- Editorial Numbered Accordion List -->
+                <div class="border-t border-espresso/30 divide-y divide-beige" id="practice-list">
+                    
+                    <!-- 01 -->
+                    <div class="practice-item reveal-up" data-open="true">
+                        <button type="button" class="practice-trigger w-full py-7 sm:py-8 flex items-center justify-between text-left gap-6 group focus:outline-none" aria-expanded="true">
+                            <div class="flex items-baseline gap-6 sm:gap-10">
+                                <span class="text-sm sm:text-base tracking-[0.18em] text-beige-muted font-normal">01</span>
+                                <h3 class="text-xl sm:text-2xl font-normal text-espresso-dark group-hover:text-espresso-light transition-colors duration-300">
+                                    Αστικό &amp; Εμπράγματο Δίκαιο
+                                </h3>
+                            </div>
+                            <span class="practice-icon flex-shrink-0 w-8 h-8 flex items-center justify-center text-espresso border border-beige group-hover:border-espresso transition-colors duration-300" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.1">
+                                    <line x1="7" y1="1" x2="7" y2="13"/>
+                                    <line x1="1" y1="7" x2="13" y2="7"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="practice-content">
+                            <div class="practice-inner">
+                                <div class="pb-8 pl-11 sm:pl-16 pr-4 sm:pr-12 text-base text-espresso leading-[1.85] space-y-3">
+                                    <p>
+                                        Ολοκληρωμένος χειρισμός υποθέσεων ενοχικού και εμπραγμάτου δικαίου, αγωγές αποζημίωσης, αδικοπραξίες, διεκδικητικές και αναγνωριστικές αγωγές κυριότητας, προστασία νομής και δουλειών.
+                                    </p>
+                                    <p class="text-sm text-espresso-light">
+                                        Ενδεικτικά: Έλεγχος τίτλων ιδιοκτησίας σε Υποθηκοφυλακεία και Κτηματολογικά Γραφεία, διορθώσεις κτηματολογικών εγγραφών, προσημειώσεις υποθήκης και άρση βαρών.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 02 -->
+                    <div class="practice-item reveal-up" data-open="false">
+                        <button type="button" class="practice-trigger w-full py-7 sm:py-8 flex items-center justify-between text-left gap-6 group focus:outline-none" aria-expanded="false">
+                            <div class="flex items-baseline gap-6 sm:gap-10">
+                                <span class="text-sm sm:text-base tracking-[0.18em] text-beige-muted font-normal">02</span>
+                                <h3 class="text-xl sm:text-2xl font-normal text-espresso-dark group-hover:text-espresso-light transition-colors duration-300">
+                                    Εμπορικό &amp; Εταιρικό Δίκαιο
+                                </h3>
+                            </div>
+                            <span class="practice-icon flex-shrink-0 w-8 h-8 flex items-center justify-center text-espresso border border-beige group-hover:border-espresso transition-colors duration-300" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.1">
+                                    <line x1="7" y1="1" x2="7" y2="13"/>
+                                    <line x1="1" y1="7" x2="13" y2="7"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="practice-content">
+                            <div class="practice-inner">
+                                <div class="pb-8 pl-11 sm:pl-16 pr-4 sm:pr-12 text-base text-espresso leading-[1.85] space-y-3">
+                                    <p>
+                                        Νομική υποστήριξη επιχειρήσεων, σύσταση και τροποποίηση καταστατικών εταιρειών (ΙΚΕ, ΕΠΕ, ΑΕ, ΟΕ, ΕΕ), εταιρικοί μετασχηματισμοί, εμπορικές συμβάσεις συνεργασίας, διανομής και πρακτορείας.
+                                    </p>
+                                    <p class="text-sm text-espresso-light">
+                                        Ενδεικτικά: Διαταγές πληρωμής, αξιόγραφα, είσπραξη εμπορικών απαιτήσεων και προστασία εμπορικών σημάτων.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 03 -->
+                    <div class="practice-item reveal-up" data-open="false">
+                        <button type="button" class="practice-trigger w-full py-7 sm:py-8 flex items-center justify-between text-left gap-6 group focus:outline-none" aria-expanded="false">
+                            <div class="flex items-baseline gap-6 sm:gap-10">
+                                <span class="text-sm sm:text-base tracking-[0.18em] text-beige-muted font-normal">03</span>
+                                <h3 class="text-xl sm:text-2xl font-normal text-espresso-dark group-hover:text-espresso-light transition-colors duration-300">
+                                    Οικογενειακό &amp; Κληρονομικό Δίκαιο
+                                </h3>
+                            </div>
+                            <span class="practice-icon flex-shrink-0 w-8 h-8 flex items-center justify-center text-espresso border border-beige group-hover:border-espresso transition-colors duration-300" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.1">
+                                    <line x1="7" y1="1" x2="7" y2="13"/>
+                                    <line x1="1" y1="7" x2="13" y2="7"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="practice-content">
+                            <div class="practice-inner">
+                                <div class="pb-8 pl-11 sm:pl-16 pr-4 sm:pr-12 text-base text-espresso leading-[1.85] space-y-3">
+                                    <p>
+                                        Διακριτικός και υπεύθυνος χειρισμός ευαίσθητων οικογενειακών υποθέσεων: συναινετικά και κατ' αντιδικία διαζύγια, επιμέλεια και επικοινωνία τέκνων, διατροφές, αξιώσεις συμμετοχής στα αποκτήματα.
+                                    </p>
+                                    <p class="text-sm text-espresso-light">
+                                        Ενδεικτικά: Δημοσίευση διαθηκών, έκδοση κληρονομητηρίων, αποδοχές και αποποιήσεις κληρονομίας, αγωγές νόμιμης μοίρας και προσβολής διαθήκης.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 04 -->
+                    <div class="practice-item reveal-up" data-open="false">
+                        <button type="button" class="practice-trigger w-full py-7 sm:py-8 flex items-center justify-between text-left gap-6 group focus:outline-none" aria-expanded="false">
+                            <div class="flex items-baseline gap-6 sm:gap-10">
+                                <span class="text-sm sm:text-base tracking-[0.18em] text-beige-muted font-normal">04</span>
+                                <h3 class="text-xl sm:text-2xl font-normal text-espresso-dark group-hover:text-espresso-light transition-colors duration-300">
+                                    Ποινικό Δίκαιο
+                                </h3>
+                            </div>
+                            <span class="practice-icon flex-shrink-0 w-8 h-8 flex items-center justify-center text-espresso border border-beige group-hover:border-espresso transition-colors duration-300" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.1">
+                                    <line x1="7" y1="1" x2="7" y2="13"/>
+                                    <line x1="1" y1="7" x2="13" y2="7"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="practice-content">
+                            <div class="practice-inner">
+                                <div class="pb-8 pl-11 sm:pl-16 pr-4 sm:pr-12 text-base text-espresso leading-[1.85] space-y-3">
+                                    <p>
+                                        Υπεράσπιση κατηγορουμένων και παράσταση προς υποστήριξη της κατηγορίας σε όλα τα στάδια της ποινικής διαδικασίας (προκαταρκτική εξέταση, ανάκριση, ακροατήριο όλων των βαθμίδων).
+                                    </p>
+                                    <p class="text-sm text-espresso-light">
+                                        Ενδεικτικά: Σύνταξη εγκλήσεων, υπομνημάτων παροχής εξηγήσεων, οικονομικά και περιουσιακά αδικήματα, αδικήματα κατά της τιμής.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 05 -->
+                    <div class="practice-item reveal-up" data-open="false">
+                        <button type="button" class="practice-trigger w-full py-7 sm:py-8 flex items-center justify-between text-left gap-6 group focus:outline-none" aria-expanded="false">
+                            <div class="flex items-baseline gap-6 sm:gap-10">
+                                <span class="text-sm sm:text-base tracking-[0.18em] text-beige-muted font-normal">05</span>
+                                <h3 class="text-xl sm:text-2xl font-normal text-espresso-dark group-hover:text-espresso-light transition-colors duration-300">
+                                    Διοικητικό Δίκαιο &amp; Συμβάσεις
+                                </h3>
+                            </div>
+                            <span class="practice-icon flex-shrink-0 w-8 h-8 flex items-center justify-center text-espresso border border-beige group-hover:border-espresso transition-colors duration-300" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.1">
+                                    <line x1="7" y1="1" x2="7" y2="13"/>
+                                    <line x1="1" y1="7" x2="13" y2="7"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="practice-content">
+                            <div class="practice-inner">
+                                <div class="pb-8 pl-11 sm:pl-16 pr-4 sm:pr-12 text-base text-espresso leading-[1.85] space-y-3">
+                                    <p>
+                                        Διοικητικές προσφυγές, αιτήσεις ακύρωσης και αναστολής εκτέλεσης κατά πράξεων της Διοίκησης, διαφορές από διοικητικές συμβάσεις και αστική ευθύνη του Δημοσίου.
+                                    </p>
+                                    <p class="text-sm text-espresso-light">
+                                        Ενδεικτικά: Κατάρτιση, έλεγχος και διαπραγμάτευση ιδιωτικών συμφωνητικών και συμβάσεων έργου.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 06 -->
+                    <div class="practice-item reveal-up border-b border-espresso/30" data-open="false">
+                        <button type="button" class="practice-trigger w-full py-7 sm:py-8 flex items-center justify-between text-left gap-6 group focus:outline-none" aria-expanded="false">
+                            <div class="flex items-baseline gap-6 sm:gap-10">
+                                <span class="text-sm sm:text-base tracking-[0.18em] text-beige-muted font-normal">06</span>
+                                <h3 class="text-xl sm:text-2xl font-normal text-espresso-dark group-hover:text-espresso-light transition-colors duration-300">
+                                    Διαχείριση Ακίνητης Περιουσίας &amp; Μισθώσεις
+                                </h3>
+                            </div>
+                            <span class="practice-icon flex-shrink-0 w-8 h-8 flex items-center justify-center text-espresso border border-beige group-hover:border-espresso transition-colors duration-300" aria-hidden="true">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.1">
+                                    <line x1="7" y1="1" x2="7" y2="13"/>
+                                    <line x1="1" y1="7" x2="13" y2="7"/>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="practice-content">
+                            <div class="practice-inner">
+                                <div class="pb-8 pl-11 sm:pl-16 pr-4 sm:pr-12 text-base text-espresso leading-[1.85] space-y-3">
+                                    <p>
+                                        Νομική θωράκιση αγοραπωλησιών ακινήτων, παράσταση σε συμβόλαια, σύνταξη μισθωτηρίων αστικών και επαγγελματικών μισθώσεων, διαταγές απόδοσης μισθίου και οφειλόμενων μισθωμάτων.
+                                    </p>
+                                    <p class="text-sm text-espresso-light">
+                                        Ενδεικτικά: Νομική εκπροσώπηση κατοίκων εξωτερικού για τη διαχείριση και αξιοποίηση της ακίνητης περιουσίας τους στην Ελλάδα.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 03: ΜΕΘΟΔΟΛΟΓΙΑ & ΑΡΧΕΣ (Warm Beige Surface) -->
+        <section id="principles" class="py-20 sm:py-28 lg:py-32 bg-beige-light border-b border-beige">
+            <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+                
+                <div class="reveal-up flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+                    <div>
+                        <p class="text-xs tracking-[0.22em] uppercase text-beige-muted mb-4">
+                            03 &mdash; Μεθοδολογία &amp; Αρχές
+                        </p>
+                        <h2 class="text-3xl sm:text-4xl lg:text-[2.6rem] font-normal text-espresso-dark leading-[1.2]">
+                            Οι Πυλώνες της Συνεργασίας μας
+                        </h2>
+                    </div>
+                    <p class="text-base text-espresso-light max-w-md">
+                        Σταθερές αξίες που διέπουν κάθε νομική ενέργεια, παράσταση και συμβουλευτική γνωμοδότηση.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+                    
+                    <!-- Pillar I -->
+                    <article class="reveal-up bg-paper border border-beige p-8 sm:p-10 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="text-sm tracking-[0.2em] text-beige-muted">I.</span>
+                                <svg class="w-6 h-6 text-espresso" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+                                    <rect x="4" y="10" width="16" height="10"/>
+                                    <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                                    <circle cx="12" cy="15" r="1"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-normal text-espresso-dark mb-4">
+                                Απόλυτη Εχεμύθεια
+                            </h3>
+                            <p class="text-base text-espresso leading-[1.85]">
+                                Η σχέση δικηγόρου και εντολέα στηρίζεται στην αμοιβαία εμπιστοσύνη. Κάθε πληροφορία, έγγραφο και προσωπικό ή επιχειρηματικό δεδομένο διαχειρίζεται με αυστηρή εχεμύθεια και σεβασμό στο δικηγορικό απόρρητο.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-beige/80 text-xs tracking-[0.16em] uppercase text-beige-muted">
+                            Επαγγελματικό Απόρρητο
+                        </div>
+                    </article>
+
+                    <!-- Pillar II -->
+                    <article class="reveal-up bg-paper border border-beige p-8 sm:p-10 flex flex-col justify-between" style="transition-delay: 100ms;">
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="text-sm tracking-[0.2em] text-beige-muted">II.</span>
+                                <svg class="w-6 h-6 text-espresso" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <line x1="12" y1="3" x2="12" y2="21"/>
+                                    <line x1="3" y1="12" x2="21" y2="12"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-normal text-espresso-dark mb-4">
+                                Στρατηγική Ακρίβεια
+                            </h3>
+                            <p class="text-base text-espresso leading-[1.85]">
+                                Πριν από κάθε δικαστική ή εξωδικαστική κίνηση προηγείται ενδελεχής νομική έρευνα, στάθμιση των αποδεικτικών μέσων και ρεαλιστική αποτίμηση των κινδύνων, ώστε η χαρασσόμενη στρατηγική να οδηγεί στο βέλτιστο αποτέλεσμα.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-beige/80 text-xs tracking-[0.16em] uppercase text-beige-muted">
+                            Μεθοδική Προετοιμασία
+                        </div>
+                    </article>
+
+                    <!-- Pillar III -->
+                    <article class="reveal-up bg-paper border border-beige p-8 sm:p-10 flex flex-col justify-between" style="transition-delay: 200ms;">
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="text-sm tracking-[0.2em] text-beige-muted">III.</span>
+                                <svg class="w-6 h-6 text-espresso" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+                                    <line x1="4" y1="20" x2="20" y2="20"/>
+                                    <line x1="7" y1="20" x2="7" y2="7"/>
+                                    <line x1="17" y1="20" x2="17" y2="7"/>
+                                    <line x1="4" y1="7" x2="20" y2="7"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-normal text-espresso-dark mb-4">
+                                Άμεση Εκπροσώπηση
+                            </h3>
+                            <p class="text-base text-espresso leading-[1.85]">
+                                Ο εντολέας επικοινωνεί απευθείας με τη δικηγόρο, χωρίς ενδιάμεσους. Η συνεχής ενημέρωση για την πορεία της υπόθεσης και η προσωπική παρουσία σε κάθε στάδιο εξασφαλίζουν αίσθημα ασφάλειας και συνέπειας.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-beige/80 text-xs tracking-[0.16em] uppercase text-beige-muted">
+                            Προσωπική Φροντίδα
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04: ΕΠΙΚΟΙΝΩΝΙΑ & ΕΔΡΑ (Αυστηρά χωρίς φόρμες) -->
+        <section id="contact" class="py-20 sm:py-28 lg:py-32 bg-paper">
+            <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+                
+                <div class="reveal-up max-w-2xl mb-14 sm:mb-16">
+                    <p class="text-xs tracking-[0.22em] uppercase text-beige-muted mb-4">
+                        04 &mdash; Επικοινωνία &amp; Έδρα
+                    </p>
+                    <h2 class="text-3xl sm:text-4xl lg:text-[2.6rem] font-normal text-espresso-dark leading-[1.2] mb-5">
+                        Άμεση Τηλεφωνική Επικοινωνία &amp; Διεύθυνση Γραφείου
+                    </h2>
+                    <p class="text-base sm:text-lg text-espresso-light leading-relaxed">
+                        Για τον προγραμματισμό συνάντησης στο γραφείο ή τηλεφωνική ενημέρωση, παρακαλούμε επικοινωνήστε απευθείας στους παρακάτω αριθμούς.
+                    </p>
+                </div>
+
+                <!-- Architectural Contact Card & Minimal Map Grid -->
+                <div class="reveal-up border border-espresso/30 bg-ivory grid grid-cols-1 lg:grid-cols-12">
+                    
+                    <!-- Left Column: Direct Phones, Hours & Address -->
+                    <div class="lg:col-span-7 p-8 sm:p-12 lg:p-14 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-beige">
+                        
+                        <div class="space-y-10">
+                            <!-- Phone Numbers Block -->
+                            <div>
+                                <p class="text-xs tracking-[0.2em] uppercase text-beige-muted mb-5">
+                                    Τηλέφωνα Επικοινωνίας
+                                </p>
+                                
+                                <div class="space-y-5">
+                                    <!-- Landline -->
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-beige">
+                                        <div>
+                                            <span class="block text-xs tracking-[0.14em] uppercase text-beige-muted mb-1">Σταθερό Γραφείου</span>
+                                            <a href="tel:+302310536977" class="text-2xl sm:text-3xl text-espresso-dark hover:text-espresso-light transition-colors tracking-[0.03em]">
+                                                2310 536 977
+                                            </a>
+                                        </div>
+                                        <div class="flex items-center gap-2.5">
+                                            <a href="tel:+302310536977" class="editorial-btn editorial-btn-primary px-4 py-2 text-xs tracking-[0.14em] uppercase">
+                                                Κλήση
+                                            </a>
+                                            <button type="button" data-copy="2310536977" class="copy-btn editorial-btn editorial-btn-secondary px-3.5 py-2 text-xs tracking-[0.14em] uppercase" aria-label="Αντιγραφή σταθερού τηλεφώνου 2310 536 977">
+                                                Αντιγραφή
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Mobile -->
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2">
+                                        <div>
+                                            <span class="block text-xs tracking-[0.14em] uppercase text-beige-muted mb-1">Κινητό Τηλέφωνο</span>
+                                            <a href="tel:+306945295180" class="text-2xl sm:text-3xl text-espresso-dark hover:text-espresso-light transition-colors tracking-[0.03em]">
+                                                6945 295 180
+                                            </a>
+                                        </div>
+                                        <div class="flex items-center gap-2.5">
+                                            <a href="tel:+306945295180" class="editorial-btn editorial-btn-primary px-4 py-2 text-xs tracking-[0.14em] uppercase">
+                                                Κλήση
+                                            </a>
+                                            <button type="button" data-copy="6945295180" class="copy-btn editorial-btn editorial-btn-secondary px-3.5 py-2 text-xs tracking-[0.14em] uppercase" aria-label="Αντιγραφή κινητού τηλεφώνου 6945 295 180">
+                                                Αντιγραφή
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Address & Appointment Hours -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4 border-t border-beige">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2.5">
+                                        <svg class="w-4 h-4 text-espresso" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+                                            <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2Z"/>
+                                            <circle cx="8" cy="6.3" r="1.6"/>
+                                        </svg>
+                                        <span class="text-xs tracking-[0.18em] uppercase text-beige-muted">Διεύθυνση</span>
+                                    </div>
+                                    <p class="text-lg text-espresso-dark">Λεωφόρος Δωδεκανήσου 21</p>
+                                    <p class="text-base text-espresso-light">546 26, Θεσσαλονίκη</p>
+                                    <button type="button" data-copy="Λεωφόρος Δωδεκανήσου 21, 546 26, Θεσσαλονίκη" class="copy-btn mt-3 inline-flex items-center gap-1.5 text-xs tracking-[0.14em] uppercase text-espresso border-b border-beige-taupe pb-0.5 hover:border-espresso transition-colors">
+                                        <span>Αντιγραφή Διεύθυνσης</span>
+                                    </button>
+                                </div>
+
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2.5">
+                                        <svg class="w-4 h-4 text-espresso" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+                                            <circle cx="8" cy="8" r="6.2"/>
+                                            <polyline points="8 4.5 8 8 10.5 9.5"/>
+                                        </svg>
+                                        <span class="text-xs tracking-[0.18em] uppercase text-beige-muted">Ωράριο Λειτουργίας</span>
+                                    </div>
+                                    <p class="text-base text-espresso-dark">Δευτέρα &ndash; Παρασκευή</p>
+                                    <p class="text-base text-espresso-light">09:00 &ndash; 14:30 &amp; 17:30 &ndash; 20:30</p>
+                                    <p class="text-sm text-beige-muted mt-1.5">Συναντήσεις κατόπιν ραντεβού</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-6 border-t border-beige flex flex-wrap items-center justify-between gap-4 text-xs tracking-[0.14em] uppercase text-beige-muted">
+                            <span>Κέντρο Θεσσαλονίκης &bull; Περιοχή Δικαστηρίων / Πλ. Δημοκρατίας</span>
+                            <span>40.6389° N, 22.9367° E</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Custom Minimal Architectural Map Sketch of Thessaloniki Center -->
+                    <div class="lg:col-span-5 bg-beige-light/50 p-8 sm:p-10 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs tracking-[0.18em] uppercase text-beige-muted">Αρχιτεκτονικό Σκαρίφημα Θέσης</span>
+                                <span class="text-xs tracking-[0.14em] uppercase text-espresso">Τ.Κ. 546 26</span>
+                            </div>
+
+                            <!-- Bespoke Minimal SVG Street Map (Λ. Δωδεκανήσου 21, Θεσσαλονίκη) -->
+                            <div class="bg-paper border border-beige p-4">
+                                <svg class="w-full h-auto" viewBox="0 0 360 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Σκαρίφημα χάρτη: Λεωφόρος Δωδεκανήσου 21, Θεσσαλονίκη">
+                                    <!-- Background -->
+                                    <rect width="360" height="300" fill="#FCFBFA"/>
+                                    
+                                    <!-- Thermaikos Waterfront Band (Bottom Left) -->
+                                    <path d="M0 245 Q 140 262, 360 282 L 360 300 L 0 300 Z" fill="#F5F0E8"/>
+                                    <path d="M0 245 Q 140 262, 360 282" stroke="#D4C5B3" stroke-width="1"/>
+                                    <text x="24" y="282" fill="#8C7A6B" font-family="Tinos, Georgia, serif" font-size="9.5" letter-spacing="2">ΘΕΡΜΑΪΚΟΣ ΚΟΛΠΟΣ</text>
+
+                                    <!-- City Blocks Grid -->
+                                    <g stroke="#E8DFD1" stroke-width="1">
+                                        <!-- Εγνατία (Horizontal Upper) -->
+                                        <line x1="0" y1="68" x2="360" y2="92" stroke-width="2.5"/>
+                                        <!-- Τσιμισκή (Horizontal Mid-Lower) -->
+                                        <line x1="0" y1="168" x2="360" y2="195" stroke-width="2"/>
+                                        <!-- Λ. Νίκης -->
+                                        <line x1="0" y1="224" x2="360" y2="255" stroke-width="1.5"/>
+                                        
+                                        <!-- 26ης Οκτωβρίου / Δικαστήρια (Left) -->
+                                        <line x1="64" y1="0" x2="48" y2="250" stroke-width="1.8"/>
+                                        <!-- Λεωφόρος Δωδεκανήσου (Main Vertical Axis) -->
+                                        <line x1="176" y1="0" x2="156" y2="245" stroke="#3E2723" stroke-width="2.2"/>
+                                        <!-- Ίωνος Δραγούμη (Right) -->
+                                        <line x1="268" y1="0" x2="252" y2="255" stroke-width="1.8"/>
+                                        <!-- Βενιζέλου (Far Right) -->
+                                        <line x1="326" y1="0" x2="314" y2="262" stroke-width="1.4"/>
+                                    </g>
+
+                                    <!-- Street Labels -->
+                                    <text x="208" y="75" fill="#8C7A6B" font-family="Tinos, Georgia, serif" font-size="8.5" letter-spacing="1.4" transform="rotate(3.8 208 75)">ΟΔΟΣ ΕΓΝΑΤΙΑ</text>
+                                    <text x="205" y="177" fill="#8C7A6B" font-family="Tinos, Georgia, serif" font-size="8.5" letter-spacing="1.4" transform="rotate(4.2 205 177)">ΟΔΟΣ ΤΣΙΜΙΣΚΗ</text>
+                                    <text x="163" y="46" fill="#3E2723" font-family="Tinos, Georgia, serif" font-size="8.5" letter-spacing="1.2" transform="rotate(-85.3 163 46)">Λ. ΔΩΔΕΚΑΝΗΣΟΥ</text>
+                                    <text x="34" y="138" fill="#8C7A6B" font-family="Tinos, Georgia, serif" font-size="8" letter-spacing="1">ΔΙΚΑΣΤΙΚΟ</text>
+                                    <text x="34" y="149" fill="#8C7A6B" font-family="Tinos, Georgia, serif" font-size="8" letter-spacing="1">ΜΕΓΑΡΟ</text>
+
+                                    <!-- Office Pin Marker at Λεωφόρος Δωδεκανήσου 21 -->
+                                    <g transform="translate(167, 134)">
+                                        <circle cx="0" cy="0" r="18" fill="#E8DFD1" fill-opacity="0.6"/>
+                                        <circle cx="0" cy="0" r="10" stroke="#3E2723" stroke-width="0.9" fill="#FFFFFF"/>
+                                        <circle cx="0" cy="0" r="3.5" fill="#3E2723"/>
+                                    </g>
+
+                                    <!-- Callout Label -->
+                                    <g transform="translate(184, 114)">
+                                        <rect x="0" y="0" width="144" height="36" fill="#FFFFFF" stroke="#3E2723" stroke-width="0.9"/>
+                                        <text x="10" y="15" fill="#2C1D16" font-family="Tinos, Georgia, serif" font-size="9.5" font-weight="bold">Λ. Δωδεκανήσου 21</text>
+                                        <text x="10" y="28" fill="#5C4336" font-family="Tinos, Georgia, serif" font-size="8.5">Δικηγορικό Γραφείο</text>
+                                    </g>
+
+                                    <!-- Minimal Compass Rose -->
+                                    <g transform="translate(324, 34)" stroke="#8C7A6B" stroke-width="0.8">
+                                        <circle cx="0" cy="0" r="12" fill="#FFFFFF"/>
+                                        <line x1="0" y1="-9" x2="0" y2="9"/>
+                                        <line x1="-9" y1="0" x2="9" y2="0"/>
+                                        <text x="0" y="-15" text-anchor="middle" fill="#8C7A6B" stroke="none" font-family="Tinos, Georgia, serif" font-size="8">Β</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <a href="https://www.google.com/maps/search/?api=1&query=%CE%9B%CE%B5%CF%89%CF%86%CF%8C%CF%81%CE%BF%CF%82+%CE%94%CF%89%CE%B4%CE%B5%CE%BA%CE%B1%CE%BD%CE%AE%CF%83%CE%BF%CF%85+21,+%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7+54626" target="_blank" rel="noopener noreferrer" class="editorial-btn editorial-btn-secondary w-full py-3.5 px-5 text-xs tracking-[0.16em] uppercase inline-flex items-center justify-center gap-2.5 bg-paper">
+                                <span>Άνοιγμα στους Χάρτες Google</span>
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+                                    <line x1="3" y1="11" x2="11" y2="3"/>
+                                    <polyline points="5 3 11 3 11 9"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MINIMAL SYMMETRICAL FOOTER -->
+    <footer class="bg-ivory border-t border-beige py-14 sm:py-16">
+        <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-beige">
+                
+                <div class="flex items-center gap-4">
+                    <svg class="w-10 h-10 text-espresso" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="1" y="1" width="46" height="46" stroke="#3E2723" stroke-width="1"/>
+                        <rect x="4.5" y="4.5" width="39" height="39" stroke="#D4C5B3" stroke-width="0.75"/>
+                        <line x1="24" y1="10.5" x2="24" y2="36.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                        <circle cx="24" cy="9.5" r="1.2" fill="#3E2723"/>
+                        <line x1="18.5" y1="36.5" x2="29.5" y2="36.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                        <line x1="16.5" y1="38.5" x2="31.5" y2="38.5" stroke="#8C7A6B" stroke-width="0.9" stroke-linecap="round"/>
+                        <line x1="12" y1="15.5" x2="36" y2="15.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                        <circle cx="24" cy="15.5" r="1.6" fill="#FCFBFA" stroke="#3E2723" stroke-width="1.1"/>
+                        <polyline points="12,15.5 8.5,24.5 15.5,24.5 12,15.5" stroke="#8C7A6B" stroke-width="0.85" stroke-linejoin="round"/>
+                        <path d="M8 24.5 Q12 27.5 16 24.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                        <polyline points="36,15.5 32.5,24.5 39.5,24.5 36,15.5" stroke="#8C7A6B" stroke-width="0.85" stroke-linejoin="round"/>
+                        <path d="M32 24.5 Q36 27.5 40 24.5" stroke="#3E2723" stroke-width="1.15" stroke-linecap="round"/>
+                    </svg>
+                    <div>
+                        <p class="text-base tracking-[0.14em] uppercase text-espresso-dark">Σωτηρία Πανουσάκη</p>
+                        <p class="text-xs tracking-[0.16em] uppercase text-beige-muted mt-0.5">Δικηγορικό Γραφείο Θεσσαλονίκης</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-espresso">
+                    <span>Λεωφόρος Δωδεκανήσου 21, 546 26 Θεσσαλονίκη</span>
+                    <span class="hidden sm:inline text-beige-taupe">&bull;</span>
+                    <a href="tel:+302310536977" class="hover:text-espresso-dark underline decoration-beige-taupe underline-offset-4">2310 536 977</a>
+                    <span class="hidden sm:inline text-beige-taupe">&bull;</span>
+                    <a href="tel:+306945295180" class="hover:text-espresso-dark underline decoration-beige-taupe underline-offset-4">6945 295 180</a>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs tracking-[0.1em] text-beige-muted">
+                <p>&copy; <span id="current-year"></span> Σωτηρία Πανουσάκη. Με επιφύλαξη παντός δικαιώματος.</p>
+                <a href="#top" class="nav-link uppercase tracking-[0.16em] text-espresso">Επιστροφή στην κορυφή</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Subtle Clipboard Feedback Toast -->
+    <div id="copy-toast" role="status" aria-live="polite" class="copy-toast fixed bottom-6 right-6 z-50 bg-espresso-dark text-paper border border-beige-taupe px-5 py-3 text-xs tracking-[0.16em] uppercase shadow-sm">
+        Αντιγράφηκε στο πρόχειρο
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Ενημέρωση έτους στο Footer
+            const yearEl = document.getElementById('current-year');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
+
+            // 2. GPU-Accelerated IntersectionObserver για ομαλή εμφάνιση στοιχείων & γραμμών
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -40px 0px',
+                threshold: 0.08
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-up, .hairline-draw').forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // 3. Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+                    mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+                    mobileMenu.classList.toggle('hidden');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+
+                document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        mobileMenu.classList.add('hidden');
+                        iconOpen.classList.remove('hidden');
+                        iconClose.classList.add('hidden');
+                    });
+                });
+            }
+
+            // 4. Accordion Τομέων Εξειδίκευσης (01 - 06)
+            const practiceItems = document.querySelectorAll('.practice-item');
+            practiceItems.forEach(item => {
+                const trigger = item.querySelector('.practice-trigger');
+                if (!trigger) return;
+
+                trigger.addEventListener('click', () => {
+                    const isOpen = item.getAttribute('data-open') === 'true';
+                    
+                    // Κλείσιμο των υπολοίπων για καθαρή editorial ανάγνωση
+                    practiceItems.forEach(other => {
+                        other.setAttribute('data-open', 'false');
+                        const otherTrigger = other.querySelector('.practice-trigger');
+                        if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+                    });
+
+                    if (!isOpen) {
+                        item.setAttribute('data-open', 'true');
+                        trigger.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            // 5. Αντιγραφή Τηλεφώνου / Διεύθυνσης με διακριτικό toast
+            const toast = document.getElementById('copy-toast');
+            let toastTimeout = null;
+
+            function showToast(message) {
+                if (!toast) return;
+                toast.textContent = message;
+                toast.classList.add('show');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2400);
+            }
+
+            function copyTextFallback(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast('Αντιγράφηκε: ' + text);
+                } catch (err) {
+                    showToast('Επιλέξτε το κείμενο για αντιγραφή');
+                }
+                document.body.removeChild(textarea);
+            }
+
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const valueToCopy = btn.getAttribute('data-copy');
+                    if (!valueToCopy) return;
+                    copyTextFallback(valueToCopy);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
