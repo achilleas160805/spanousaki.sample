@@ -72,7 +72,7 @@
             align-items: center;
             justify-content: center;
             gap: 32px;
-            transition: opacity 0.7s ease, visibility 0.7s ease;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
         .loader.is-hidden {
@@ -417,6 +417,27 @@
             width: 100%;
             padding: 120px 0 100px;
         }
+
+        /* ============================================================
+           PREMIUM HERO FADE ANIMATIONS
+           ============================================================ */
+        .hero-fade {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 1.2s var(--ease-luxury), transform 1.2s var(--ease-luxury);
+        }
+
+        .hero-loaded .hero-fade {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Σταδιακή εμφάνιση (stagger) */
+        .hero-loaded .hero-title { transition-delay: 0.1s; }
+        .hero-loaded .hero-subtitle { transition-delay: 0.3s; }
+        .hero-loaded .hero-address { transition-delay: 0.5s; }
+        .hero-loaded .hero-actions { transition-delay: 0.7s; }
+        /* --------------------------------------------------------- */
 
         .hero-title {
             font-size: clamp(2.8rem, 7vw, 5.4rem);
@@ -1031,6 +1052,7 @@
             .hero-scroll-hint { animation: none !important; }
             .mobile-drawer { transition: none !important; }
             .practice-row:hover, .map-canvas:hover { transform: none !important; }
+            .hero-fade { opacity: 1 !important; transform: none !important; transition: none !important; }
         }
     </style>
 </head>
@@ -1126,10 +1148,11 @@
 
             <div class="hero-content" id="hero-content">
                 <div class="container">
-                    <h1 class="hero-title">Σωτηρία Πανουσάκη</h1>
-                    <p class="hero-subtitle">Δικηγόρος παρ' Αρείω Πάγω &mdash; Θεσσαλονίκη</p>
+                    <!-- Προσθήκη κλάσης hero-fade -->
+                    <h1 class="hero-title hero-fade">Σωτηρία Πανουσάκη</h1>
+                    <p class="hero-subtitle hero-fade">Δικηγόρος παρ' Αρείω Πάγω &mdash; Θεσσαλονίκη</p>
 
-                    <a href="https://www.google.com/maps/search/?api=1&query=%CE%9B%CE%B5%CF%89%CF%86%CF%8C%CF%81%CE%BF%CF%82+%CE%94%CF%89%CE%B4%CE%B5%CE%BA%CE%B1%CE%BD%CE%AE%CF%83%CE%BF%CF%85+21,+%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7+54626" target="_blank" rel="noopener noreferrer" class="hero-address">
+                    <a href="https://www.google.com/maps/search/?api=1&query=%CE%9B%CE%B5%CF%89%CF%86%CF%8C%CF%81%CE%BF%CF%82+%CE%94%CF%89%CE%B4%CE%B5%CE%BA%CE%B1%CE%BD%CE%AE%CF%83%CE%BF%CF%85+21,+%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7+54626" target="_blank" rel="noopener noreferrer" class="hero-address hero-fade">
                         <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#FAF8F5" stroke-width="1.1" aria-hidden="true">
                             <path d="M8 14.5s5-4.3 5-8.2A5 5 0 0 0 3 6.3c0 3.9 5 8.2 5 8.2Z"/>
                             <circle cx="8" cy="6.3" r="1.6"/>
@@ -1137,7 +1160,7 @@
                         <span>Λεωφόρος Δωδεκανήσου 21, 546 26 Θεσσαλονίκη</span>
                     </a>
 
-                    <div class="hero-actions">
+                    <div class="hero-actions hero-fade">
                         <a href="tel:+302310536977" class="editorial-link">
                             <span class="editorial-link-label">Γραφείο</span>
                             <span class="editorial-link-value">2310 536 977</span>
@@ -1502,11 +1525,19 @@
 
     <script>
         (function () {
-            // 1. Loading screen
+            // 1. Loading screen & Hero Animation Trigger
             function hideLoader() {
                 const loader = document.getElementById('loader');
+                const hero = document.getElementById('hero'); // Παίρνουμε το hero
                 if (loader) loader.classList.add('is-hidden');
                 document.body.classList.remove('is-loading');
+                
+                // Μόλις κρυφτεί ο loader, ενεργοποιούμε το premium fade του κειμένου
+                if (hero) {
+                    setTimeout(() => {
+                        hero.classList.add('hero-loaded');
+                    }, 300); // Μικρή καθυστέρηση για να προλάβει να ξεκινήσει το fade out του loader
+                }
             }
 
             window.addEventListener('load', () => setTimeout(hideLoader, 1400));
