@@ -10,7 +10,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -32,7 +32,7 @@
 
         html {
             scroll-behavior: smooth;
-            font-family: 'Tinos', Georgia, 'Times New Roman', serif;
+            font-family: 'Zen Maru Gothic', sans-serif;
             font-size: 16px;
             background-color: var(--color-white);
             color: var(--color-brown-dark);
@@ -42,7 +42,7 @@
         }
 
         body {
-            font-family: 'Tinos', Georgia, 'Times New Roman', serif;
+            font-family: 'Zen Maru Gothic', sans-serif;
             background-color: var(--color-white);
             color: var(--color-brown-dark);
             line-height: 1.75;
@@ -165,7 +165,7 @@
 
         .section-title {
             font-size: clamp(2rem, 3.6vw, 2.9rem);
-            font-weight: 400;
+            font-weight: 500; /* Zen Maru Gothic φαίνεται καλύτερα με 500 εδώ */
             color: var(--color-brown-dark);
             line-height: 1.18;
             letter-spacing: -0.012em;
@@ -222,8 +222,9 @@
         .brand-text { display: flex; flex-direction: column; min-width: 0; }
 
         .brand-name {
-            font-size: 1.02rem;
-            letter-spacing: 0.16em;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--color-brown-dark);
             line-height: 1.2;
@@ -234,7 +235,7 @@
 
         .brand-role {
             font-size: 0.7rem;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--color-muted);
             margin-top: 3px;
@@ -244,8 +245,8 @@
         }
 
         @media (max-width: 400px) {
-            .brand-name { font-size: 0.88rem; letter-spacing: 0.12em; }
-            .brand-role { font-size: 0.6rem; letter-spacing: 0.16em; }
+            .brand-name { font-size: 0.88rem; letter-spacing: 0.1em; }
+            .brand-role { font-size: 0.6rem; letter-spacing: 0.14em; }
             .brand-logo-svg { width: 34px; height: 34px; }
             .brand-link { gap: 10px; }
         }
@@ -257,7 +258,7 @@
         .nav-item {
             position: relative;
             font-size: 0.78rem;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--color-brown);
             padding: 8px 0;
@@ -330,7 +331,7 @@
             display: block;
             padding: 18px 0;
             font-size: 1rem;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--color-brown-dark);
             border-bottom: 1px solid var(--color-beige-border);
@@ -416,17 +417,15 @@
             padding: 120px 0 100px;
         }
 
-        /* ΑΦΑΙΡΕΘΗΚΕ το hero-top-row */
-
         .hero-title {
             font-size: clamp(2.8rem, 7vw, 5.4rem);
-            font-weight: 400;
+            font-weight: 500; /* 500 για καλύτερη απόδοση της Zen Maru Gothic */
             color: var(--color-ivory);
-            line-height: 1.02;
-            letter-spacing: -0.022em;
+            line-height: 1.05;
+            letter-spacing: -0.01em;
             margin-bottom: 20px;
             text-shadow: 0 4px 24px rgba(0,0,0,0.5);
-            margin-top: 40px; /* Προσθήκη χώρου για να μην κολλάει πάνω */
+            margin-top: 40px;
         }
 
         .hero-subtitle {
@@ -480,7 +479,7 @@
 
         .editorial-link-label {
             font-size: 0.68rem;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: rgba(250, 248, 245, 0.65);
         }
@@ -728,7 +727,7 @@
 
         .practice-card-title {
             font-size: 1.28rem;
-            font-weight: 400;
+            font-weight: 500;
             color: var(--color-brown-dark);
             line-height: 1.32;
         }
@@ -765,7 +764,7 @@
         .contact-label {
             display: block;
             font-size: 0.7rem;
-            letter-spacing: 0.24em;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--color-muted);
             margin-bottom: 12px;
@@ -820,7 +819,7 @@
             align-items: center;
             gap: 10px;
             font-size: 0.76rem;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--color-brown-dark);
             padding-bottom: 6px;
@@ -965,7 +964,7 @@
         .modal-kicker {
             display: block;
             font-size: 0.7rem;
-            letter-spacing: 0.28em;
+            letter-spacing: 0.24em;
             text-transform: uppercase;
             color: var(--color-muted);
             margin-bottom: 14px;
@@ -973,7 +972,7 @@
 
         .modal-title {
             font-size: clamp(1.6rem, 3.4vw, 2.2rem);
-            font-weight: 400;
+            font-weight: 500;
             color: var(--color-brown-dark);
             line-height: 1.22;
             margin-bottom: 24px;
@@ -1113,8 +1112,6 @@
 
             <div class="hero-content" id="hero-content">
                 <div class="container">
-                    <!-- ΑΦΑΙΡΕΘΗΚΕ ΤΟ SVG ΚΑΙ ΤΟ "Δικηγορικό Γραφείο • Θεσσαλονίκη" -->
-                    
                     <h1 class="hero-title">Σωτηρία Πανουσάκη</h1>
                     <p class="hero-subtitle">Δικηγόρος παρ' Αρείω Πάγω &mdash; Θεσσαλονίκη</p>
 
@@ -1373,7 +1370,7 @@
                                 <rect width="380" height="300" fill="#FAF8F5"/>
                                 <path d="M0 232 Q 150 250, 380 272 L 380 300 L 0 300 Z" fill="#F6F2EC"/>
                                 <path d="M0 232 Q 150 250, 380 272" stroke="#C7B9A5" stroke-width="1"/>
-                                <text x="20" y="268" fill="#7A6A5C" font-family="Tinos, Georgia, serif" font-size="9" letter-spacing="1.8">ΛΙΜΑΝΙ &bull; ΘΕΡΜΑΪΚΟΣ ΚΟΛΠΟΣ</text>
+                                <text x="20" y="268" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="9" letter-spacing="1.8">ΛΙΜΑΝΙ &bull; ΘΕΡΜΑΪΚΟΣ ΚΟΛΠΟΣ</text>
 
                                 <g stroke="#E5DDD2" stroke-width="1.5">
                                     <line x1="0" y1="64" x2="380" y2="86" stroke-width="2.6"/>
@@ -1385,14 +1382,14 @@
                                 </g>
 
                                 <circle cx="182" cy="75" r="13" fill="#FFFFFF" stroke="#C7B9A5" stroke-width="1"/>
-                                <text x="199" y="54" fill="#7A6A5C" font-family="Tinos, Georgia, serif" font-size="8" letter-spacing="1">ΠΛ. ΔΗΜΟΚΡΑΤΙΑΣ</text>
-                                <text x="199" y="64" fill="#7A6A5C" font-family="Tinos, Georgia, serif" font-size="8" letter-spacing="1">(ΒΑΡΔΑΡΗΣ)</text>
+                                <text x="199" y="54" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8" letter-spacing="1">ΠΛ. ΔΗΜΟΚΡΑΤΙΑΣ</text>
+                                <text x="199" y="64" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8" letter-spacing="1">(ΒΑΡΔΑΡΗΣ)</text>
 
-                                <text x="242" y="72" fill="#7A6A5C" font-family="Tinos, Georgia, serif" font-size="8.5" letter-spacing="1.3" transform="rotate(3.3 242 72)">ΟΔΟΣ ΕΓΝΑΤΙΑ</text>
-                                <text x="234" y="173" fill="#7A6A5C" font-family="Tinos, Georgia, serif" font-size="8.5" letter-spacing="1.3" transform="rotate(3.6 234 173)">ΟΔΟΣ ΤΣΙΜΙΣΚΗ</text>
-                                <text x="171" y="42" fill="#3E2B22" font-family="Tinos, Georgia, serif" font-size="8.5" letter-spacing="1.2" transform="rotate(-85.1 171 42)">Λ. ΔΩΔΕΚΑΝΗΣΟΥ</text>
-                                <text x="22" y="128" fill="#7A6A5C" font-family="Tinos, Georgia, serif" font-size="8" letter-spacing="1">ΔΙΚΑΣΤΙΚΟ</text>
-                                <text x="22" y="139" fill="#7A6A5C" font-family="Tinos, Georgia, serif" font-size="8" letter-spacing="1">ΜΕΓΑΡΟ</text>
+                                <text x="242" y="72" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8.5" letter-spacing="1.3" transform="rotate(3.3 242 72)">ΟΔΟΣ ΕΓΝΑΤΙΑ</text>
+                                <text x="234" y="173" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8.5" letter-spacing="1.3" transform="rotate(3.6 234 173)">ΟΔΟΣ ΤΣΙΜΙΣΚΗ</text>
+                                <text x="171" y="42" fill="#3E2B22" font-family="Zen Maru Gothic, sans-serif" font-size="8.5" letter-spacing="1.2" transform="rotate(-85.1 171 42)">Λ. ΔΩΔΕΚΑΝΗΣΟΥ</text>
+                                <text x="22" y="128" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8" letter-spacing="1">ΔΙΚΑΣΤΙΚΟ</text>
+                                <text x="22" y="139" fill="#7A6A5C" font-family="Zen Maru Gothic, sans-serif" font-size="8" letter-spacing="1">ΜΕΓΑΡΟ</text>
 
                                 <g transform="translate(174, 128)">
                                     <circle cx="0" cy="0" r="16" fill="#E5DDD2" fill-opacity="0.65"/>
@@ -1402,15 +1399,15 @@
 
                                 <g transform="translate(192, 108)">
                                     <rect x="0" y="0" width="152" height="38" fill="#FFFFFF" stroke="#3E2B22" stroke-width="0.9"/>
-                                    <text x="10" y="16" fill="#2A1D17" font-family="Tinos, Georgia, serif" font-size="9.5" font-weight="bold">Λ. Δωδεκανήσου 21</text>
-                                    <text x="10" y="29" fill="#5A4235" font-family="Tinos, Georgia, serif" font-size="8.5">Δικηγορικό Γραφείο</text>
+                                    <text x="10" y="16" fill="#2A1D17" font-family="Zen Maru Gothic, sans-serif" font-size="9.5" font-weight="bold">Λ. Δωδεκανήσου 21</text>
+                                    <text x="10" y="29" fill="#5A4235" font-family="Zen Maru Gothic, sans-serif" font-size="8.5">Δικηγορικό Γραφείο</text>
                                 </g>
 
                                 <g transform="translate(346, 32)" stroke="#7A6A5C" stroke-width="0.8">
                                     <circle cx="0" cy="0" r="11" fill="#FFFFFF"/>
                                     <line x1="0" y1="-8" x2="0" y2="8"/>
                                     <line x1="-8" y1="0" x2="8" y2="0"/>
-                                    <text x="0" y="-14" text-anchor="middle" fill="#7A6A5C" stroke="none" font-family="Tinos, Georgia, serif" font-size="8">Β</text>
+                                    <text x="0" y="-14" text-anchor="middle" fill="#7A6A5C" stroke="none" font-family="Zen Maru Gothic, sans-serif" font-size="8">Β</text>
                                 </g>
                             </svg>
                         </div>
